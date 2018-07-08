@@ -5,7 +5,7 @@ build:
     - install-packages:
       packages: libasound2-dev alsa-utils avahi-utils
     - script:
-      name: 'ALSA
+      name: 'ALSA'
       code: |
         sudo modprobe snd_bcm2835
     - npm-install
