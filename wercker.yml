@@ -9,7 +9,7 @@ build:
     - script:
         name: install dependencies
         code: |
-          apt-get install libsoundio-dev
+           sudo apt-get install libasound2
           yarn --ignore-engines
 test:
     - script:
