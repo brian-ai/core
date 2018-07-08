@@ -4,5 +4,5 @@ build:
   steps:
     - install-packages:
       packages: libasound2-dev
-    - yarn-install
-    - yarn-test
+    - npm-install
+    - npm-test
