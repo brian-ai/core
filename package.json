@@ -7,7 +7,8 @@
   "license": "MIT",
   "private": true,
   "scripts": {
-    "call:sophie": "node src/index.js"
+    "call:sophie": "node src/index.js",
+    "test": "jest"
   },
   "dependencies": {
     "aws-sdk": "^2.270.1",
@@ -17,5 +18,10 @@
     "firebase": "^5.2.0",
     "speaker": "^0.4.1",
     "uuid": "^3.3.2"
+  },
+  "devDependencies": {
+    "babel-jest": "^23.2.0",
+    "babel-preset-env": "^1.7.0",
+    "jest": "^23.3.0"
   }
 }
