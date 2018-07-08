@@ -1,7 +1,9 @@
-box: node
+box: node:8.10.0
 
 build:
   steps:
+    - install-packages:
+      packages: libasound2-dev
     - script:
       name: install yarn
       code: |
@@ -9,7 +11,6 @@ build:
     - script:
         name: install dependencies
         code: |
-          sudo apt-get install libasound2
           yarn --ignore-engines
 test:
     - script:
