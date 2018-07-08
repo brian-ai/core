@@ -12,7 +12,6 @@ build:
         name: install dependencies
         code: |
           yarn --ignore-engines
-  test:
     - script:
       name: test
       code: |
