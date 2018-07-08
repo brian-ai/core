@@ -1,0 +1,21 @@
+{
+  "name": "Sophie",
+  "version": "1.0.0",
+  "description": "Sophie is here to help you",
+  "main": "index.js",
+  "author": "Caio Alcantara",
+  "license": "MIT",
+  "private": true,
+  "scripts": {
+    "call:sophie": "node src/index.js"
+  },
+  "dependencies": {
+    "aws-sdk": "^2.270.1",
+    "cli-interact": "^0.1.9",
+    "compromise": "^11.11.0",
+    "esm": "^3.0.64",
+    "firebase": "^5.2.0",
+    "speaker": "^0.4.1",
+    "uuid": "^3.3.2"
+  }
+}
