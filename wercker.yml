@@ -12,7 +12,7 @@ build:
         name: install dependencies
         code: |
           yarn --ignore-engines
-test:
+  test:
     - script:
       name: test
       code: |
