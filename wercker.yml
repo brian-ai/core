@@ -3,6 +3,10 @@ box: node:8.10.0
 build:
   steps:
     - install-packages:
-      packages: libasound2-dev
+      packages: libasound2-dev alsa-utils avahi-utils
+    - script:
+      name: 'ALSA
+      code: |
+        sudo modprobe snd_bcm2835
     - npm-install
     - npm-test
