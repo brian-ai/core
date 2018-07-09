@@ -4,5 +4,5 @@
   <img alt="Wercker status" src="https://app.wercker.com/status/495994fe5d32fe5e3fdb86e928165cf3/s/master">
 </a>
 
-# sophie
+# Brian
 My personal life helper providing solutions

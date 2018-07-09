@@ -2,14 +2,16 @@ import nlp from 'compromise'
 import memory from './memory'
 import { conversation } from './actions';
 
-const initPoliteSophie = (conversation, person) => {
+const initPoliteBrian = (context, person) => {
   const visitor = (person[0] || {}).firstName;
   
   if (Boolean(visitor)) {
     conversation.sayHi(visitor)
   } else {
-    memory.rememberPerson(conversation, memory);
-  } 
+    memory.rememberPerson(context, memory);
+
+    conversation.talkAboutWeather();
+  }
 }
 
 const init = (input) => {
@@ -18,7 +20,7 @@ const init = (input) => {
     .people()
     .data();
 
-  return initPoliteSophie(input, person);
+  return initPoliteBrian(input, person);
 }
 
 export { init }

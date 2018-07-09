@@ -1,13 +1,13 @@
 {
-  "name": "Sophie",
+  "name": "Brian",
   "version": "1.0.0",
-  "description": "Sophie is here to help you",
+  "description": "brian is here to help you",
   "main": "index.js",
   "author": "Caio Alcantara",
   "license": "MIT",
   "private": true,
   "scripts": {
-    "call:sophie": "node src/index.js",
+    "call:brian": "node src/index.js",
     "test": "jest --coverage"
   },
   "dependencies": {

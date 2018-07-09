@@ -1,7 +1,6 @@
 const firebase = require('firebase');
 const nlp = require('compromise');
 const Voice = require('../speaker')
-const query = require('cli-interact').getYesNo;
 
 const  MEET_PHRASE = `Hello! Sorry, but I don't know you yet :3, What's your name?`;
 
@@ -23,25 +22,18 @@ module.exports = {
       'camila': 'FemaleName',
       'caio': 'MaleName'
     };
-    const sophieMemories = memory
+    const brianMemories = memory
       .getInstance()
       .ref('/dictionary');
     
-    sophieMemories.on('value', function(memory) {
+    brianMemories.on('value', function(memory) {
       dictionary = memory.val();
     });
 
     const analyzedPhrase = nlp(data, dictionary);
     const person = analyzedPhrase.people().data();
-   
-    try {
-      Voice.speak(`Hi, ${person[0].firstName}! How are you today? My name is Sophie and I'm here to help.`);
-    } catch(err) {
-      console.log(err)
-      setTimeout(() => {
-        Voice.speak(`Hi, ${person[0].firstName}! How are you today? My name is Sophie and I'm here to help.`)
-      }, 500)
-    }
+
+    Voice.speak(`Hi, ${person[0].firstName}! How are you today? My name is Brian and I'm here to help.`);
   },
   forget: (data, memoryType) => {}
 }
