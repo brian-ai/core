@@ -10,7 +10,7 @@ const Polly = new AWS.Polly({
 const createSentence = (sentence, fromError = false) => ({
   'Text': sentence,
   'OutputFormat': 'pcm',
-  'VoiceId': 'Amy'
+  'VoiceId': 'Brian'
 });
 
 const getPlayer = () => new Speaker({

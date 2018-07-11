@@ -1,4 +1,5 @@
-require = require("esm")(module/*, options*/)
-const brain = require('./brain');
+require = require("esm")(module)
+const emotions = require('./brain/knowledge/emotions')
+const input = 'We love potatos!'
 
-brain.init(`oh hey, I'm caio.`);
+console.log(`Feeling analysis for: ${input}`, emotions.analyzeFeeling(input))

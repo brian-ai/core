@@ -12,10 +12,12 @@
   },
   "dependencies": {
     "aws-sdk": "^2.270.1",
+    "brain.js": "^1.2.2",
     "cli-interact": "^0.1.9",
     "compromise": "^11.11.0",
     "esm": "^3.0.64",
     "firebase": "^5.2.0",
+    "serialize.js": "^0.0.10",
     "speaker": "^0.4.1",
     "uuid": "^3.3.2"
   },
