@@ -1,4 +1,4 @@
-const happy = [
+export default [
   {
     input: "I am happy",
     output: { happy: 1 }
@@ -460,5 +460,3 @@ const happy = [
     output: { happy: 1 }
   },
 ]
-
-module.exports = happy

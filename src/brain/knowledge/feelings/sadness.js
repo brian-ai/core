@@ -1,4 +1,4 @@
-const sad = [
+export default [
   {
     input: "I am sad",
     output: { sad: 1 }
@@ -15,4 +15,3 @@ const sad = [
   }
 ]
 
-module.exports = sad

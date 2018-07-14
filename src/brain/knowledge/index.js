@@ -1,10 +1,11 @@
+import { feelings } from './feelings'
 import elementsClassification from './elements-classification'
-import * as utils from './utils'
 
-const GREETING = (name) => `Oh! Hello, ${name}`
+const baseKnowledge = [...feelings, ...elementsClassification]
 
 export {
-  GREETING,
-  elementsClassification,
-  utils
+  feelings,
+  elementsClassification
 }
+
+export default baseKnowledge

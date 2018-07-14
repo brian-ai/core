@@ -8,7 +8,7 @@ const classifySubjects = (input) => {
   
   if (!classification) return `Sorry, but I don't understand what you've said.`
 
-  return classification
+  return `I think that when you're saying ${input} this means a ${classification}`
 }
 
 const train = async (newKnowledge = null) => {

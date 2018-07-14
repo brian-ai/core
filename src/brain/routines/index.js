@@ -1,7 +1,8 @@
-import { serializer } from '../knowledge/utils'
+import { serializer } from '../utils'
+import { feelings } from '../knowledge'
 
-const processText = (neural, input) => neural.run(serializer.encode(input))
+const loadFeelings = (cortex) => cortex.train(serializer.processTrainingData(feelings))
 
 export {
-  processText,
+  loadFeelings,
 }

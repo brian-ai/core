@@ -1,6 +1,6 @@
 import Brain from 'brain.js'
 import trainingData from './training-data'
-import { serializer } from './utils'
+import { serialize, encode } from './utils'
 
 const MISSUNDERSTOOD_FEELING = `Sorry, but I don't understand what you've said.`
 
@@ -20,7 +20,7 @@ const analyzeFeelingFromText = input => {
   console.log('--Running neural train...')
   BrianNeuralNet.train(serialize(trainingData), config)
   
-  console.log('--Neural network output: ', BrianNeuralNet.run(serializer.encode(input)))
+  console.log('--Neural network output: ', BrianNeuralNet.run(serialize(input)))
 
   if (!encode(input)) return BrianNeuralNet.run(encode(MISSUNDERSTOOD_FEELING))
   
