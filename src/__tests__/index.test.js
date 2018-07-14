@@ -1,7 +1,7 @@
-import { init } from '../brain';
+import { setup } from '../brain';
 
 describe('main test', () => {
-  it('should exists an init function', () => {
-    expect(init).toBeDefined()    
+  it('should exist the brain setup function', () => {
+    expect(setup).toBeDefined()    
   });
 })

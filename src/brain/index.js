@@ -5,13 +5,13 @@ import Brain from 'brain.js'
 import trainingData from './knowledge/training-data'
 import { serializer } from './knowledge/utils'
 
-export class BriansBrain {
-  constructor() {
-    this.neuralNet = new Brain.NeuralNetwork()
-    this.neuralNet.train(serializer.processTrainingData(trainingData))
-    
-    this.neuralNet
-  }
+const setup = () => {
+  const network = new Brain.NeuralNetwork()
+  network.train(serializer.processTrainingData(trainingData))
+  
+  return network
 }
 
-new BriansBrain()
+export {
+  setup,
+}

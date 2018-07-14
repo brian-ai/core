@@ -8,23 +8,22 @@
   "private": true,
   "scripts": {
     "call:brian": "node src/index.js",
-    "test": "jest --coverage"
+    "test": "jest src --coverage"
   },
   "dependencies": {
     "aws-sdk": "^2.270.1",
     "brain.js": "^1.2.2",
     "cli-interact": "^0.1.9",
-    "compromise": "^11.11.0",
     "esm": "^3.0.64",
     "firebase": "^5.2.0",
     "natural": "^0.6.1",
     "serialize.js": "^0.0.10",
-    "speaker": "^0.4.1",
-    "uuid": "^3.3.2"
+    "speaker": "^0.4.1"
   },
   "devDependencies": {
     "babel-jest": "^23.2.0",
     "babel-preset-env": "^1.7.0",
+    "canvas-prebuilt": "^1.6.5-prerelease.1",
     "jest": "^23.3.0"
   }
 }
