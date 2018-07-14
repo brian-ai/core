@@ -11,7 +11,8 @@ const classifySubjects = (input) => {
   return classification
 }
 
-const train = (newKnowledge = null) => {
+const train = async (newKnowledge = null) => {
+  console.log('Cognitive analysis, basic  training...')
   let trainingContext = elementsClassification
 
   if (newKnowledge) {
@@ -19,8 +20,9 @@ const train = (newKnowledge = null) => {
   }
 
   trainingContext.map(token => Bayes.addDocument(token.input, token.class))
+  Bayes.train()
   
-  return Bayes.train()
+  return true
 }
 
 export {

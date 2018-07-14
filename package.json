@@ -14,7 +14,7 @@
     "aws-sdk": "^2.270.1",
     "brain.js": "^1.2.2",
     "cli-interact": "^0.1.9",
-    "esm": "^3.0.64",
+    "esm": "^3.0.70",
     "firebase": "^5.2.0",
     "natural": "^0.6.1",
     "serialize.js": "^0.0.10",
