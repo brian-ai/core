@@ -1,5 +1,22 @@
-import hapiness from './happiness'
-import sadness from './sadness'
+import { hapiness, sadness } from './data'
+import Brain from 'brain.js'
 
+const activeNetwork = async (LSTM = false) => {
+  console.log('Initializing brain...')
+  const network = new Brain.recurrent.LSTMTimeStep()
+  await network.train(serializer.processTrainingData(baseKnowledge),  {
+    momentum: 0.1,        
+    callback: null,
+    callbackPeriod: 10,
+    timeout: Infinity  
+  })
+  
+  return network
+}
 
-export const feelings = [...new Set(hapiness, sadness)]
+const feelings = [...new Set(hapiness, sadness)]
+
+export {
+  feelings,
+  activeNetwork
+}

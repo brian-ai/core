@@ -1,11 +1,11 @@
 import { feelings } from './feelings'
-import elementsClassification from './elements-classification'
+import NaturalElements from './natual-sentences-classification'
 
-const baseKnowledge = [...feelings, ...elementsClassification]
+const baseKnowledge = [...feelings, ...NaturalElements]
 
 export {
   feelings,
-  elementsClassification
+  NaturalElements
 }
 
 export default baseKnowledge

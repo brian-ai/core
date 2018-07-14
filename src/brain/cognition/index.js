@@ -1,31 +1,5 @@
-import natural from 'natural'
-import { elementsClassification } from '../knowledge'
-
-const Bayes = new natural.BayesClassifier()
-
-const classifySubjects = (input) => {
-  const classification = Bayes.classify(input)
-  
-  if (!classification) return `Sorry, but I don't understand what you've said.`
-
-  return `I think that when you're saying ${input} this means a ${classification}`
-}
-
-const train = async (newKnowledge = null) => {
-  console.log('Cognitive analysis, basic  training...')
-  let trainingContext = elementsClassification
-
-  if (newKnowledge) {
-    newKnowledge.map(token => trainingContext.push(token))
-  }
-
-  trainingContext.map(token => Bayes.addDocument(token.input, token.class))
-  Bayes.train()
-  
-  return true
-}
+import * as comprehension from './comprehension'
 
 export {
-  train,
-  classifySubjects,
+  comprehension,
 }

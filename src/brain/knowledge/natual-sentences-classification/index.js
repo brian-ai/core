@@ -4,6 +4,26 @@ export default [
     class: 'spam',
   },
   {
+    input: 'I think it is a good movie',
+    class: 'positive',
+  },
+  {
+    input: 'It was good',
+    class: 'positive',
+  },
+  {
+    input: 'This is  good',
+    class: 'positive',
+  },
+  {
+    input: 'This is not  good',
+    class: 'negative',
+  },
+  {
+    input: 'I think it is not a good movie',
+    class: 'negative',
+  },
+  {
     input: 'I like apples',
     class: 'feeling',
   },
@@ -30,6 +50,14 @@ export default [
   {
     input: 'Tomorrow I will get an uber',
     class: 'future',
+  },
+  {
+    input: 'schedule an uber tomorrow',
+    class: 'schedule action',
+  },
+  {
+    input: 'schedule an uber for me',
+    class: 'schedule action',
   },
   {
     input: `I don't like you`,
