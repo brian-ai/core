@@ -1,26 +1,17 @@
-import nlp from 'compromise'
-import memory from './memory'
-import { conversation } from './actions';
+// import nlp from 'compromise'
+// import memory from './memory'
+// import { conversation } from './actions';
+import Brain from 'brain.js'
+import trainingData from './knowledge/training-data'
+import { serializer } from './knowledge/utils'
 
-const initPoliteBrian = (context, person) => {
-  const visitor = (person[0] || {}).firstName;
-  
-  if (Boolean(visitor)) {
-    conversation.sayHi(visitor)
-  } else {
-    memory.rememberPerson(context, memory);
-
-    conversation.talkAboutWeather();
+export class BriansBrain {
+  constructor() {
+    this.neuralNet = new Brain.NeuralNetwork()
+    this.neuralNet.train(serializer.processTrainingData(trainingData))
+    
+    this.neuralNet
   }
 }
 
-const init = (input) => {
-  const phrase = input.toLowerCase();
-  const person = nlp(phrase)
-    .people()
-    .data();
-
-  return initPoliteBrian(input, person);
-}
-
-export { init }
+new BriansBrain()

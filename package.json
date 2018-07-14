@@ -17,6 +17,7 @@
     "compromise": "^11.11.0",
     "esm": "^3.0.64",
     "firebase": "^5.2.0",
+    "natural": "^0.6.1",
     "serialize.js": "^0.0.10",
     "speaker": "^0.4.1",
     "uuid": "^3.3.2"
