@@ -1,6 +1,5 @@
 import AWS from 'aws-sdk'
 import Stream from 'stream'
-import Speaker from 'speaker'
 
 const Polly = new AWS.Polly({
   signatureVersion: 'v4',
@@ -13,7 +12,7 @@ const createSentence = (sentence, fromError = false) => ({
   'VoiceId': 'Brian'
 });
 
-const getPlayer = () => new Speaker({
+const getPlayer = () => new require('speaker')({
     channels: 1,
     bitDepth: 16,
     sampleRate: 16000
