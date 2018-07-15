@@ -1,39 +1,28 @@
-const firebase = require('firebase');
-const nlp = require('compromise');
-const Voice = require('../speaker')
+import { getFirebaseKnowledge } from '../knowledge'
 
-const  MEET_PHRASE = `Hello! Sorry, but I don't know you yet :3, What's your name?`;
+class Memory {
+  constructor(type) {
+    this.type = type
+  }
 
-module.exports = {
-  getInstance: () => {
-    const config = {
-      apiKey: "AIzaSyCexFmvQpRptW5YSjUf8iJtsldMUHNDumg",
-      authDomain: "sofia-3ed7b.firebaseapp.com",
-      databaseURL: "https://sofia-3ed7b.firebaseio.com",
-      projectId: "sophie-3ed7b",
-      storageBucket: "",
-      messagingSenderId: "542396136506"
-    };
+  saveMasterInfo(userData) {
+    return console.log(this.type, userData)
+  }
 
-    return firebase.initializeApp(config).database();
-  },
-  rememberPerson:  (data, memory) => {
-    let dictionary = {
-      'camila': 'FemaleName',
-      'caio': 'MaleName'
-    };
-    const brianMemories = memory
-      .getInstance()
-      .ref('/dictionary');
+  searchKnowledge(piece = null) {
+    const firebaseKnowledge = getFirebaseKnowledge()
+    const data = firebaseKnowledge.ref(piece)
     
-    brianMemories.on('value', function(memory) {
-      dictionary = memory.val();
-    });
+    return data.on('value', (snapshot) => console.log(snapshot.val()))
+  }
 
-    const analyzedPhrase = nlp(data, dictionary);
-    const person = analyzedPhrase.people().data();
+  async getMemories(piece) {
+    const creator = {
+      name: 'Caio',
+    }
 
-    Voice.speak(`Hi, ${person[0].firstName}! How are you today? My name is Brian and I'm here to help.`);
-  },
-  forget: (data, memoryType) => {}
+    return this.searchKnowledge(piece)
+  }
 }
+
+export default Memory

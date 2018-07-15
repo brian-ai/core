@@ -19,6 +19,7 @@
     "firebase": "^5.2.0",
     "natural": "^0.6.1",
     "paralleldots": "^3.1.1",
+    "prettyjson": "^1.2.1",
     "serialize.js": "^0.0.10",
     "speaker": "^0.4.1"
   },
@@ -26,6 +27,7 @@
     "babel-jest": "^23.2.0",
     "babel-preset-env": "^1.7.0",
     "canvas-prebuilt": "^1.6.5-prerelease.1",
-    "jest": "^23.3.0"
+    "jest": "^23.3.0",
+    "loglevel": "^1.6.1"
   }
 }

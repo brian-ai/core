@@ -13,7 +13,7 @@ const IsAbusiveInformation = (sentence) => Parallel.abuse(sentence)
 
 const phraseExtractor = (sentence) => Parallel.phraseExtractor(sentence)
 
-const textParser = async (sentence) => await Parallel.textParser(sentence)
+const textParser = (sentence) => Parallel.textParser(sentence)
 
 const classifySubjects = (sentence) => NPL.classify(sentence)
 
