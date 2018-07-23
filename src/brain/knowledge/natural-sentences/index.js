@@ -132,7 +132,11 @@ export default [
     class: 'find',
   },
   {
-    input: 'Where is london',
-    class: 'find',
+    input: 'where is london?',
+    class: 'search',
   },
+  {
+    input: 'Hello, Brian! Where is the London Eye?',
+    class: 'search'
+  }
 ]

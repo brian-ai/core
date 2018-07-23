@@ -11,9 +11,9 @@
     "test": "jest src --coverage"
   },
   "dependencies": {
+    "@mapquest/directions": "^0.3.3",
     "aws-sdk": "^2.270.1",
     "brain.js": "^1.2.2",
-    "cli-interact": "^0.1.9",
     "dotenv": "^6.0.0",
     "esm": "^3.0.70",
     "firebase": "^5.2.0",
@@ -21,13 +21,13 @@
     "paralleldots": "^3.1.1",
     "prettyjson": "^1.2.1",
     "serialize.js": "^0.0.10",
-    "speaker": "^0.4.1"
+    "speaker": "^0.4.1",
+    "weather-js": "^2.0.0"
   },
   "devDependencies": {
     "babel-jest": "^23.2.0",
     "babel-preset-env": "^1.7.0",
     "canvas-prebuilt": "^1.6.5-prerelease.1",
-    "jest": "^23.3.0",
-    "loglevel": "^1.6.1"
+    "jest": "^23.3.0"
   }
 }

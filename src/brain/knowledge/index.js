@@ -1,5 +1,5 @@
 import { feelings } from './feelings'
-import NaturalElements from './natual-sentences-classification'
+import NaturalElements from './natural-sentences'
 import firebase from 'firebase'
 
 const baseKnowledge = [...feelings, ...NaturalElements]
