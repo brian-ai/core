@@ -12,17 +12,16 @@ const getRouteToWork = (a,b) => {
     timeOverage: 99
   })
   .then(function(results){
-      console.log(results)
       const { distance, formattedTime, name} = results.properties
+      // const firstRouteId = results.properties.routeSessionIds[0];  //access routeSessionIds here
+      // console.log(directions.getShape(firstRouteId))
+      // return directions.getShape(firstRouteId)   //get the detailed route shape
 
       return {
         distance,
         formattedTime,
         name
       }
-      // const firstRouteId = results.properties.routeSessionIds[0];  //access routeSessionIds here
-      // console.log(directions.getShape(firstRouteId))
-      // return directions.getShape(firstRouteId)   //get the detailed route shape
   })
 }
 

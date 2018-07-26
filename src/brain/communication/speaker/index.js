@@ -1,40 +1,53 @@
 import AWS from 'aws-sdk'
-import Stream from 'stream'
+import { Readable } from 'stream'
 import Speaker from 'speaker'
+
+const speaker = new Speaker({
+  channels: 1,
+  bitDepth: 16,
+  sampleRate: 17350
+})
 
 const Polly = new AWS.Polly({
   signatureVersion: 'v4',
-  region: 'us-east-1'
+  region: 'us-east-1',
 })
 
-const createSentence = (sentence, fromError = false) => ({
+const createSentence = (sentence) => ({
   'Text': sentence,
   'OutputFormat': 'pcm',
-  'VoiceId': 'Brian'
+  'TextType': 'ssml',
+  'VoiceId': 'Brian',
 });
 
-const getPlayer = () => new Speaker({
-    channels: 1,
-    bitDepth: 16,
-    sampleRate: 16000
-})
-
-const speak = async (phrase) => {
+const speak = async (phrase, nextStep) => {
   await Polly.synthesizeSpeech(createSentence(phrase), function(err, res) {
     if (err) {
-        console.log('err', err)
+      console.log('err', err)
     } else if (res && res.AudioStream instanceof Buffer) {
-        try {
-          let bufferStream = new Stream.PassThrough()
-          bufferStream.end(res.AudioStream)
-          bufferStream.pipe(getPlayer());
-        } catch (err) {
-          console.error(err);
+      try {
+        let bufferStream = new Readable
+        let start = 0
+        const bufferLength = 255
+        
+        do {
+          const piece = res.AudioStream.slice(start, bufferLength)
+          bufferStream.push(piece)
+          start += bufferLength
         }
+        while (res.AudioStream.length < bufferLength);
+
+        bufferStream.pipe(speaker)
+          .on('end', () => {
+            console.log('xpto')
+          })
+      } catch (err) {
+        console.error(err)
+      }
     }
   })
 }
 
 export {
   speak
-}
+} 
