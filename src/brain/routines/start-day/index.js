@@ -6,7 +6,7 @@ const giveWeatherAdvise = (temp = 18, humanizedTime) => {
   if (parseFloat(temp) < 23) return `You should put a coach because I unfortunatelly can't warm you yet.`
   if (parseFloat(temp) >= 25) return `You should be okay! today is warm. Enjoy the heat!`
     
-  return `With this time I wish you a good luck in this ${humanizedTime}, Sir!`
+  return `With this time I wish you a good luck in this ${humanizedTime}, boss.`
   
 }
 
@@ -46,11 +46,14 @@ const startDay = async () => {
   
   return `
     <speak>
-      ${greetingObject.sentence}!
-      <break time="200ms"/> Now it's ${temperature} degrees and it's ${skytext}, ${giveWeatherAdvise(temperature, greetingObject.humanizedTime)}.
-      \n If you go by car, you should take ${minutes} minutes to arrive at work. The estimated distance is ${distance} kilometers.</amazon:auto-breaths>
-      
-      <break time="0.3s"/>Have a nice ${greetingObject.humanizedTime} Sir!
+      <amazon:effect vocal-tract-length="+5%">
+        ${greetingObject.sentence}!
+        <break time="200ms"/> Now it's ${temperature} degrees and it's <emphasis level="moderate">${skytext}</emphasis>, ${giveWeatherAdvise(temperature, greetingObject.humanizedTime)}.
+        <p>Have a lovely ${greetingObject.humanizedTime}!</p>
+        
+        
+        </amazon:auto-breaths>
+      </amazon:effect>
     </speak>`
 }
 

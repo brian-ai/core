@@ -96,10 +96,10 @@ const dailyJob = new CronJob('00 56 13 * * 1-5', async function() {
 
 export const init = async () => {
   // Daily routine one, scratch 2
-  dailyJob.start()
+  // dailyJob.start()
   // // await loadSpotifySongs()
-  // const dayInformation = await startDay()
-  // Voice.speak(dayInformation)
+  const dayInformation = await startDay()
+  Voice.speak(dayInformation)
 }
 
 init()

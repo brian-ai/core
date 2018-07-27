@@ -26,6 +26,7 @@
     "serialize.js": "^0.0.10",
     "speaker": "^0.4.1",
     "spotify-web-api-node": "^3.1.1",
+    "stream-buffers": "^3.0.2",
     "weather-js": "^2.0.0"
   },
   "devDependencies": {

@@ -1,6 +1,6 @@
 import AWS from 'aws-sdk'
-import Stream from 'stream'
 import Speaker from 'speaker'
+import { ReadableStreamBuffer } from 'stream-buffers'
 
 const Polly = new AWS.Polly({
   signatureVersion: 'v4',
@@ -14,25 +14,29 @@ const createSentence = (sentence) => ({
   'VoiceId': 'Brian',
 })
 
-const speaker = new Speaker({
-    channels: 1,
-    bitDepth: 16,
-    sampleRate: 16000
-})
-
 const speak = (phrase) => {
-  return Polly.synthesizeSpeech(createSentence(phrase), function(err, res) {
-    if (err) {
-        console.log('err', err)
-    } else if (res && res.AudioStream instanceof Buffer) {
-        try {
-          let bufferStream = new Stream.PassThrough()
-          bufferStream.end(res.AudioStream)
-          bufferStream.pipe(speaker);
-        } catch (err) {
-          console.error(err);
-        }
-    }
+  return new Promise((resolve, reject) => {
+    Polly.synthesizeSpeech(createSentence(phrase), function(err, res) {
+      if (err || !res.AudioStream instanceof Buffer) {
+          reject(err || 'Not is a buffer')
+      }
+      const speaker = Speaker({
+        channels: 1,
+        bitDepth: 16,
+        sampleRate: 17650
+      })
+      let speakerBuffer = new ReadableStreamBuffer({
+        frequency: 10,   // in milliseconds.
+      });
+
+      speakerBuffer.put(res.AudioStream)
+      speakerBuffer.on('end', () => {
+        speaker.close()
+        resolve()
+      })
+      speakerBuffer
+        .pipe(speaker)
+    })
   })
 }
 
