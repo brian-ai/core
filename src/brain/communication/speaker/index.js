@@ -20,7 +20,7 @@ const speak = (phrase) => {
       if (err || !res.AudioStream instanceof Buffer) {
           reject(err || 'Not is a buffer')
       }
-      const speaker = Speaker({
+      const speaker = new Speaker({
         channels: 1,
         bitDepth: 16,
         sampleRate: 17650
