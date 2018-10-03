@@ -8,22 +8,31 @@
   "private": true,
   "scripts": {
     "call:brian": "node src/index.js",
-    "test": "jest --coverage"
+    "test": "jest src --coverage"
   },
   "dependencies": {
+    "@mapquest/directions": "^0.3.3",
     "aws-sdk": "^2.270.1",
     "brain.js": "^1.2.2",
-    "cli-interact": "^0.1.9",
-    "compromise": "^11.11.0",
-    "esm": "^3.0.64",
+    "cron": "^1.3.0",
+    "dotenv": "^6.0.0",
+    "esm": "^3.0.70",
     "firebase": "^5.2.0",
+    "lame": "^1.2.4",
+    "moment": "^2.22.2",
+    "natural": "^0.6.1",
+    "paralleldots": "^3.1.1",
+    "prettyjson": "^1.2.1",
     "serialize.js": "^0.0.10",
     "speaker": "^0.4.1",
-    "uuid": "^3.3.2"
+    "spotify-web-api-node": "^3.1.1",
+    "stream-buffers": "^3.0.2",
+    "weather-js": "^2.0.0"
   },
   "devDependencies": {
     "babel-jest": "^23.2.0",
     "babel-preset-env": "^1.7.0",
+    "canvas-prebuilt": "^1.6.5-prerelease.1",
     "jest": "^23.3.0"
   }
 }

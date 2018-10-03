@@ -1,5 +1,6 @@
+const dotenv = require('dotenv');
 require = require("esm")(module)
-const emotions = require('./brain/knowledge/emotions')
-const input = 'We love potatos!'
+ 
+dotenv.load();
 
-console.log(`Feeling analysis for: ${input}`, emotions.analyzeFeeling(input))
+module.exports = require('./brain')

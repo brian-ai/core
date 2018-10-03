@@ -1,7 +1,5 @@
-import { serializer } from '../knowledge/utils'
+import startDay from './start-day'
 
-const processText = (neural, input) => neural.run(serializer.encode(input))
-
-export {
-  processText,
+export  {
+  startDay,
 }
