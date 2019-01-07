@@ -1,31 +1,38 @@
 import SpotifyWebApi from'spotify-web-api-node'
-
-// Credentials are optional
-const spotifyApi = new SpotifyWebApi({
-  clientId: process.env.SPOTIFY_CLIENT_ID,
-  clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-  redirectUri: 'http://www.example.com/callback',
-  scope: 'user-modify-playback-state'
-})
+import auth from 'spotify-personal-auth';
 
 const authorize = () => {
+  auth.config({
+    clientId: process.env.SPOTIFY_CLIENT_ID,
+    clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
+    scope: ['user-modify-playback-state', 'user-top-read'], // Replace with your array of needed Spotify scopes
+    path: '../tokens' // Optional path to file to save tokens (will be created for you)
+  })
+  
   return new Promise((resolve, reject) => {
-    spotifyApi.clientCredentialsGrant()
-    .then((data) => {
+    auth.token()
+    .then(([token, refresh]) => {
         try {
-          console.log(`Token found: ${data.body['access_token']}`)
-          spotifyApi.setAccessToken(data.body['access_token'])
-          // refreshSpotifyToken.start()   
-          resolve(spotifyApi)
+          const Brianfy = new SpotifyWebApi()
+          console.log(`Token found in name of jesus: ${token}`)
+          Brianfy.setAccessToken(token)
+          Brianfy.setRefreshToken(refresh) 
+          
+          resolve(Brianfy)
         } catch (err) {
           reject(err)
         }
     })
     .catch(err => {
-      console.log(
-        'Something went wrong when retrieving an access token',
-        err.muser-modify-playback-stateessage
-      );
+      Voice.speak(
+        `<speak>
+          <amazon:auto-breaths>
+            Excuse me, Sir! But something went wrong when retrieving an access token from spotify! <break time="0.2s"/>
+            You should teach me how to code so I could fix that for you <break time="0.2s"/>
+            I'm pretty  sure that the problem is ${err.message}
+          </amazon:auto-breaths>
+        </speak>`
+      )
     })
   })
 }

@@ -37,7 +37,7 @@ const speak = (phrase) => {
       })
 
       speaker.write(res.AudioStream, () => {
-        setTimeout(() => speaker.close(), 800)
+        setTimeout(() => speaker.close(), 750)
       })
     })
   })
