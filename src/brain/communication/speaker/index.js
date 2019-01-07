@@ -17,6 +17,8 @@ const createSentence = (sentence) => ({
 const speak = (phrase) => {
   return new Promise((resolve, reject) => {
     Polly.synthesizeSpeech(createSentence(phrase), function(err, res) {
+      console.log(res)
+    
       if (err || !res.AudioStream instanceof Buffer) {
           reject(err || 'Not is a buffer')
       }
@@ -25,17 +27,18 @@ const speak = (phrase) => {
         bitDepth: 16,
         sampleRate: 17650
       })
-      let speakerBuffer = new ReadableStreamBuffer({
-        frequency: 10,   // in milliseconds.
-      });
 
-      speakerBuffer.put(res.AudioStream)
-      speakerBuffer.on('end', () => {
-        speaker.close()
+      speaker.on('open', () => {
+        console.debug('Speaker open')
+      })
+
+      speaker.on('close', () => {
         resolve()
       })
-      speakerBuffer
-        .pipe(speaker)
+
+      speaker.write(res.AudioStream, () => {
+        setTimeout(() => speaker.close(), 800)
+      })
     })
   })
 }
