@@ -18,13 +18,7 @@ const loadSpotifySongs = () => {
         resolve(musicPlayer)
     }, (error) => {
         Voice.speak(
-          `<speak>
-            <amazon:auto-breaths>
-              Excuse me Sir, but something went wrong with your spotify! <break time="0.2s"/>
-              You should teach me to code, that way I could fix that for you <break time="0.2s"/>
-              I'm pretty  sure that the problem is ${error}
-            </amazon:auto-breaths>
-          </speak>`
+          
         )
 
         reject(error)
@@ -39,15 +33,13 @@ const startPlaylist = (playlist) => {
   * Runs every week days
   * at 5:00:00 AM.
   */  
-  setTimeout(() => {
-    try {
-      musicPlayer.play({
-        context_uri: playlist.uri
-      })
-    } catch (e) {
-      console.log(e)
-    }
-  }, 700)
+  try {
+    musicPlayer.play({
+      context_uri: playlist.uri
+    })
+  } catch (e) {
+    console.log(e)
+  }
 }
 
 // const dailyJob = new CronJob('00 20 8 * * 1-5', async function() {
@@ -79,13 +71,6 @@ const dailyJob = async () => {
     })
     .catch(err => console.log(err))
 }
-    // playListControl.start()
-//   }, function () {
-//     /* This function is executed when the job stops */
-//     console.log('Daily job executed')
-//   },
-//   true, /* Start the job right now */
-// )
 
 export const init = async () => {
   dailyJob()
