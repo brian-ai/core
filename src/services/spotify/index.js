@@ -1,5 +1,5 @@
 import SpotifyWebApi from'spotify-web-api-node'
-import auth from 'spotify-personal-auth';
+import auth from './auth';
 
 const authorize = () => {
   auth.config({

@@ -1,0 +1,44 @@
+{
+  "name": "spotify-personal-auth",
+  "version": "1.1.4",
+  "author": "Tomer Aberbach <tomeraberbach@gmail.com> (https://tomeraberba.ch)",
+  "description": "A Spotify authorization code flow implementation for local personal use.",
+  "keywords": [
+    "spotify",
+    "personal",
+    "authentication",
+    "authorization",
+    "web",
+    "api"
+  ],
+  "homepage": "https://github.com/TomerAberbach/spotify-personal-auth",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/TomerAberbach/spotify-personal-auth.git"
+  },
+  "bugs": {
+    "url": "https://github.com/TomerAberbach/spotify-personal-auth/issues"
+  },
+  "license": "MIT",
+  "files": [
+    "index.js"
+  ],
+  "main": "index.js",
+  "scripts": {
+    "test": "standard && standard-markdown README.md",
+    "publish:git": "git add . && git push --follow-tags",
+    "publish:patch": "npm test && npm version patch -m \"%s\" && npm publish && npm run publish:git",
+    "publish:minor": "npm test && npm version minor -m \"%s\" && npm publish && npm run publish:git",
+    "publish:major": "npm test && npm version major -m \"%s\" && npm publish && npm run publish:git"
+  },
+  "dependencies": {
+    "http-shutdown": "^1.2.0",
+    "opn": "^5.3.0",
+    "qs": "latest",
+    "request": "^2.85.0"
+  },
+  "devDependencies": {
+    "standard": "*",
+    "standard-markdown": "*"
+  }
+}
