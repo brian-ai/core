@@ -1,6 +1,5 @@
-[![Maintainability](https://api.codeclimate.com/v1/badges/42aa02c2b0d7dfe393bc/maintainability)](https://codeclimate.com/github/clucasalcantara/sophie/maintainability)
-[![Test Coverage](https://api.codeclimate.com/v1/badges/42aa02c2b0d7dfe393bc/test_coverage)](https://codeclimate.com/github/clucasalcantara/sophie/test_coverage)
 [![wercker status](https://app.wercker.com/status/f1efa13b6eefcdb923fa4762d53e5dae/s/master "wercker status")](https://app.wercker.com/project/byKey/f1efa13b6eefcdb923fa4762d53e5dae)
+[![Maintainability](https://api.codeclimate.com/v1/badges/2fa360d0b0c14db8ba9e/maintainability)](https://codeclimate.com/github/clucasalcantara/brian/maintainability)
 
 ### Brian
 Brian is designed to be a personal assistant with a goal to give to my life a little more of organization
