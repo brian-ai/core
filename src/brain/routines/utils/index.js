@@ -20,7 +20,7 @@ const getGreetingTime = (time) => {
 	/* eslint-disable consistent-return */
 	return {
 		humanizedTime,
-		sentence: `<amazon:auto-breaths>Good ${humanizedTime} boss!!!`,
+		sentence: `<amazon:auto-breaths>Good ${humanizedTime} sir!!!`,
 	}
 }
 

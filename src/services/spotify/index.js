@@ -6,8 +6,11 @@ const authorize = () => {
 	auth.config({
 		clientId: process.env.SPOTIFY_CLIENT_ID,
 		clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-		scope: ['user-modify-playback-state', 'user-top-read'], // Replace with your array of needed Spotify scopes
-		path: '../tokens', // Optional path to file to save tokens (will be created for you)
+		scope: [
+			'user-read-playback-state',
+			'user-modify-playback-state',
+			'user-top-read'],
+		path: './tokens',
 	})
 
 	return new Promise((resolve, reject) => {

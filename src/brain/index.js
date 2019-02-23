@@ -25,13 +25,17 @@ const loadSpotifySongs = () => new Promise(async (resolve, reject) => {
 	)
 })
 
+const setVoiceVolume = async (amount = 30) => musicPlayer.setVolume(amount)
+
 // const playListControl = new CronJob('00 57 8 * * 1-5', async function() {
-const startPlaylist = (playlist) => {
+const startPlaylist = async (playlist) => {
 	/*
 	 * Runs every week days
 	 * at 5:00:00 AM.
 	 */
 	try {
+		await setVoiceVolume(100)
+
 		musicPlayer.play({
 			context_uri: playlist.uri,
 		})
@@ -52,6 +56,8 @@ const dailyJob = async () => {
 	await loadSpotifySongs()
 	// Loading daily useful information
 	const dayInformation = await startDay()
+
+	await setVoiceVolume(50)
 
 	speak(dayInformation)
 		.then(() => {
