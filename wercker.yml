@@ -5,4 +5,6 @@ build:
     - install-packages:
       packages: libasound2-dev alsa-utils avahi-utils
     - npm-install
-    - npm-test
+    - internal/docker-build:
+        dockerfile: Dockerfile
+        image-name: brian

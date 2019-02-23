@@ -1,8 +1,9 @@
 import weather from 'weather-js'
+import { giveWeatherAdvise } from './utils'
 
-const getWeatherInforamtion = (location) => {
+const getWeatherInformation = (location) => {
   return new Promise((resolve, reject) => {
-    weather.find({ search: 'Lisbon, PT', degreeType: 'C'}, (err, result) => {
+    weather.find({ search: 'São Paulo, SP', degreeType: 'C'}, (err, result) => {
       if(err) reject(err);
 
       if (result) resolve(result[0].current);
@@ -10,6 +11,4 @@ const getWeatherInforamtion = (location) => {
   })
 }
 
-// const getYahooWeather 
-
-export default getWeatherInforamtion
+export { getWeatherInformation, giveWeatherAdvise }
