@@ -4,6 +4,20 @@
 ## Tech stack:
 I'm using a compromise to NLP, AWS Polly to voice syntethize, mongodb as local database, and a few baby steps into machine learning using Brain.JS and Synaptic to combine neural networks approachs to improve brian understanding.
 
+## Features breakdown
+
+- [x] Spotify Controller, playlist suggestion
+- [x] Pre scheduled Routines (Start day, birthdays etc)
+- Accept voice commands and a give a conversational answer
+- Handle ordinary tasks (schedule events, turn on/off electrical devices)
+- Knowledge growth (Create a internal database to store his knowledge development)
+- Fluently speak
+- Hot keywork (Hey, Brian!)
+- Audio Sample Analyzing (Voice recognition)
+- Face Recognition
+- Social network database
+- Smart home control
+
 ## How Brian works?
 
 Brian is a polite, friendly and nice personal life helper, written in Node JS consuming a few apis to charge his powers, having Jarvis as his uncle it's easy to be awesome.
