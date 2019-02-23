@@ -1,5 +1,3 @@
-import * as  serializer from './serializer'
+import * as serializer from './serializer'
 
-export {
-  serializer,
-}
+export default serializer

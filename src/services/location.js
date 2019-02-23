@@ -1,3 +1,4 @@
+/* eslint-disable */
 import Directions from '@mapquest/directions'
 
 const directions = new Directions({ key: process.env.MAPQUEST_KEY });
@@ -14,7 +15,6 @@ const getRouteToWork = (a,b) => {
   .then(function(results){
       const { distance, formattedTime, name} = results.properties
       const firstRouteId = results.properties.routeSessionIds[0];  //access routeSessionIds here
-      console.log(directions.getShape(firstRouteId))   //get the detailed route shape
 
       return {
         distance,

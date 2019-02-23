@@ -4,8 +4,5 @@ import getRouteToWork from './location'
 import Brianfy from './spotify'
 
 export {
-  ParallelDots,
-  Natural,
-  getRouteToWork,
-  Brianfy,
+	ParallelDots, Natural, getRouteToWork, Brianfy,
 }

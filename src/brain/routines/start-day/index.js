@@ -1,6 +1,6 @@
 import moment from 'moment'
 import { getWeatherInformation, giveWeatherAdvise } from './weather'
-import { getGreetingTime } from '../utils'
+import getGreetingTime from '../utils'
 import { getRouteToWork } from '../../../services'
 
 /**
@@ -10,21 +10,20 @@ import { getRouteToWork } from '../../../services'
  * provide useful information as first interaction with Brian
  */
 const startDay = async () => {
-  const { temperature, skytext } = await getWeatherInformation()
-  const trafficInformation = await getRouteToWork()
-  const { distance, name, formattedTime } = trafficInformation
-  console.log(trafficInformation)
-  const timePieces = formattedTime.split(':');
+	const { temperature, skytext } = await getWeatherInformation()
+	const trafficInformation = await getRouteToWork()
+	const { distance, name, formattedTime } = trafficInformation
+	const timePieces = formattedTime.split(':')
 
-  // Hours are worth 60 minutes.
-  const minutes = (+timePieces[0]) * 60 + (+timePieces[1]);
-  const greetingObject = getGreetingTime(moment())
-  
-  return `
+	const minutes = +timePieces[0] * 60 + +timePieces[1]
+	const greetingObject = getGreetingTime(moment())
+	const weatherAdvise = giveWeatherAdvise(temperature, greetingObject.humanizedTime)
+
+	return `
     <speak>
       <amazon:effect vocal-tract-length="+5%">
         ${greetingObject.sentence}!
-        <break time="200ms"/> Now it's ${temperature} degrees and it's <emphasis level="moderate">${skytext}</emphasis>, ${giveWeatherAdvise(temperature, greetingObject.humanizedTime)}.
+        <break time="200ms"/> Now it's ${temperature} degrees and it's <emphasis level="moderate">${skytext}</emphasis>, ${weatherAdvise}}.
         <p>Have a lovely ${greetingObject.humanizedTime}!</p>
         <break time="200ms"/>
         <p>You should get about of ${minutes} minutes to work by ${name}, the whole path is ${distance} kilometers</p>

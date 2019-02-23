@@ -1,5 +1,4 @@
 import startDay from './start-day'
 
-export  {
-  startDay,
-}
+/* eslint-disable import/prefer-default-export */
+export { startDay }

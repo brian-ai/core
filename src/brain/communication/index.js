@@ -1,5 +1,3 @@
-import * as Voice from './speaker'
+import speak from './speaker'
 
-export  {
-  Voice,
-}
+export default speak
