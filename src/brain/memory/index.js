@@ -1,28 +1,34 @@
 /* eslint-disable */
 import { getFirebaseKnowledge } from '../knowledge'
+import { Brianfy, rethinkdb } from '../../services'
 
 class Memory {
-	constructor(type) {
-		this.type = type
+	constructor() {
+		this.connection = null
 	}
+	
+	async getConnection() {
+		if (!this.connection) {
+			this.connection = await rethinkdb.connect()
 
-	saveMasterInfo(userData) {
-		return console.log(this.type, userData)
-	}
-
-	searchKnowledge(piece = null) {
-		const firebaseKnowledge = getFirebaseKnowledge()
-		const data = firebaseKnowledge.ref(piece)
-
-		return data.on('value', snapshot => console.log(snapshot.val()))
-	}
-
-	async getMemories(piece) {
-		const creator = {
-			name: 'Caio',
+			return this.connection
 		}
+		
+		return this.connection
+	}
 
-		return this.searchKnowledge(piece)
+	async getRoles() {
+		const connection = await this.getConnection()
+		const roles = await rethinkdb.getData(connection, 'roles')
+
+		return roles
+	}
+
+	async getUsers() {
+		const connection = await this.getConnection()
+		const people = await rethinkdb.getData(connection, 'people')
+
+		return people
 	}
 }
 

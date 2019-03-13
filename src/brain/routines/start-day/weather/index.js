@@ -1,7 +1,7 @@
 import weather from 'weather-js'
 import giveWeatherAdvise from './utils'
 
-const getWeatherInformation = (location = 'São Paulo, SP', degreeType = 'C') => new Promise((resolve, reject) => {
+const getWeatherInformation = (location = 'Salvador, BA', degreeType = 'C') => new Promise((resolve, reject) => {
 	weather.find(
 		{ search: location, degreeType },
 		(err, result) => {
