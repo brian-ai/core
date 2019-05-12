@@ -71,9 +71,11 @@ const setVoiceVolume = async (instance, amount = 30) => {
  * @param {Brianfy} instance
  * @returns {Array} Playlists
  */
-const findPlaylists = instance =>
-	new Promise(async (resolve, reject) => {
-		instance.searchPlaylists('Sam Smith').then(
+const findPlaylists = (instance, musicGenre = 'Jazz') => {
+	logger.info('Loading spotify playlists...')
+
+	return new Promise(async (resolve, reject) => {
+		instance.searchPlaylists(musicGenre).then(
 			data => {
 				const searchResult = data.body.playlists
 				const playlists = searchResult.items
@@ -87,6 +89,7 @@ const findPlaylists = instance =>
 			}
 		)
 	})
+}
 
 /**
  * Start a playlist into a desired player

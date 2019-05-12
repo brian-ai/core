@@ -1,5 +1,6 @@
 /* eslint-disable */
 import Brain from 'brain.js'
+import { serializer } from '../../utils'
 import { hapiness, sadness } from './data'
 
 const activeNetwork = async (LSTM = false) => {
@@ -9,7 +10,7 @@ const activeNetwork = async (LSTM = false) => {
 		momentum: 0.1,
 		callback: null,
 		callbackPeriod: 10,
-		timeout: Infinity,
+		timeout: Infinity
 	})
 
 	return network

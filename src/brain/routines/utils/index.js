@@ -1,26 +1,19 @@
-const getGreetingTime = (time) => {
-	let humanizedTime = null
+const getGreetingTime = () => {
+	const today = new Date()
+	const currenHour = today.getHours()
+	let humanizedTime
 
-	if (!time || !time.isValid()) {
-		return
-	}
-
-	const splitAfternoon = 12
-	const splitEvening = 17
-	const currentHour = parseFloat(time.format('HH'))
-
-	if (currentHour >= splitAfternoon && currentHour <= splitEvening) {
-		humanizedTime = 'afternoon'
-	} else if (currentHour >= splitEvening) {
-		humanizedTime = 'evening'
-	} else {
+	if (currenHour < 12) {
 		humanizedTime = 'morning'
+	} else if (currenHour < 18) {
+		humanizedTime = 'afternoon'
+	} else {
+		humanizedTime = 'evening'
 	}
 
-	/* eslint-disable consistent-return */
 	return {
 		humanizedTime,
-		sentence: `<amazon:auto-breaths>Good ${humanizedTime} sir!!!`,
+		sentence: `<amazon:auto-breaths>Good ${humanizedTime} sir!!!`
 	}
 }
 

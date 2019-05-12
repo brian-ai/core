@@ -12,13 +12,20 @@ const getShred = async (table, label) => {
 	return data
 }
 
+const isEmpty = (kind, defaultValue) => {
+	logger.warning(`Property is empty ${kind}`)
+
+	return defaultValue
+}
+
 const Memory = {
 	getSystemMemory: async () => {
-		const config = await getShred('config', 'Config')
-		const roles = await getShred('roles', 'Roles')
-		const people = await getShred('people', 'People')
-		const providers = await getShred('providers', 'Providers')
-		const tokens = await getShred('tokens', 'Tokens')
+		const config = (await getShred('config', 'Config')) || isEmpty('config', {})
+		const roles = (await getShred('roles', 'Roles')) || isEmpty('roles', [])
+		const people = (await getShred('people', 'People')) || isEmpty('people', [])
+		const providers =
+			(await getShred('providers', 'Providers')) || isEmpty('providers', [])
+		const tokens = (await getShred('tokens', 'Tokens')) || isEmpty('tokens', [])
 
 		logger.info('System main memory loaded')
 

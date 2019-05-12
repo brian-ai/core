@@ -1,4 +1,4 @@
-import moment from 'moment'
+import logger from 'hoopa-logger'
 import { getWeatherInformation, giveWeatherAdvise } from './weather'
 import getGreetingTime from '../utils'
 import { getRouteToWork } from '../../../services'
@@ -18,7 +18,7 @@ const startDay = async () => {
 	const timePieces = formattedTime.split(':')
 
 	const minutes = +timePieces[0] * 60 + +timePieces[1]
-	const greetingObject = getGreetingTime(moment())
+	const greetingObject = getGreetingTime()
 	const weatherAdvise = giveWeatherAdvise(
 		temperature,
 		greetingObject.humanizedTime
@@ -29,6 +29,8 @@ const startDay = async () => {
 		name,
 		distance
 	}
+
+	logger.info('Loaded daily information...')
 
 	return `
     <speak>
