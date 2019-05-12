@@ -4,6 +4,14 @@ import logger from 'hoopa-logger'
 // Speaker Wrapper
 import Voice from '../../brain/communication'
 
+const loadBrianfy = (access, refresh) => {
+	const Brianfy = new SpotifyWebApi()
+	Brianfy.setAccessToken(access)
+	Brianfy.setRefreshToken(refresh)
+
+	return Brianfy
+}
+
 /**
  * Write spotify tokens based on the spotify
  * authorization flow
@@ -27,14 +35,11 @@ const authorize = () => {
 			.token()
 			.then(([token, refresh]) => {
 				try {
-					const Brianfy = new SpotifyWebApi()
-					Brianfy.setAccessToken(token)
-					Brianfy.setRefreshToken(refresh)
+					logger.info('Brianfy loaded!')
 
-					logger.info('Brianfy configured!')
-					resolve(Brianfy)
+					resolve(loadBrianfy(token, refresh))
 				} catch (err) {
-					logger.info('Authorization error...')
+					logger.info('Brianfy, authorization error...')
 
 					reject(err)
 				}
@@ -92,11 +97,11 @@ const startPlaylist = async (instance, playlist) => {
 	try {
 		logger.info(`${playlist.name} started`)
 
-		return instance.play({
+		instance.play({
 			context_uri: playlist.uri
 		})
 	} catch (error) {
-		logger.error(error)
+		return logger.error(error)
 	}
 
 	return setVoiceVolume(instance, 100)
@@ -106,8 +111,16 @@ const startPlaylist = async (instance, playlist) => {
  * Creates an spotifyApi instance
  * @returns spotifyApi
  */
-const Brianfy = async () => {
-	const spotifyApi = await authorize()
+const Brianfy = async SYSTEM_DATA => {
+	const spotifyID = SYSTEM_DATA.providers.find(
+		providerObj => providerObj.slug === 'spotify'
+	).id
+	const spotifyToken = SYSTEM_DATA.tokens.find(
+		tokenObj => tokenObj.provider === spotifyID
+	)
+	const spotifyApi = !spotifyToken.access
+		? await authorize()
+		: loadBrianfy(spotifyToken.access, spotifyToken.refresh)
 
 	return spotifyApi
 }

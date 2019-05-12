@@ -3,9 +3,7 @@ import logger from 'hoopa-logger'
 import Speak from './communication'
 import { startDay } from './routines'
 import { player } from '../services'
-// import Memory from './memory'
-
-// const memory = new Memory()
+import Memory from './memory'
 
 // const dailyJob = new CronJob('00 20 8 * * 1-5', async function() {
 const dailyJob = async () => {
@@ -13,13 +11,15 @@ const dailyJob = async () => {
 	 * Runs every week days
 	 * at 6:00:00 AM.
 	 */
-	logger.info('Loading Brianfy...')
-	const brianfy = await player.Brianfy()
-	// const SYSTEM_DATA = await memory.getSystemMemory()
+	const SYSTEM_DATA = await Memory.getSystemMemory()
+	const Brianfy = await player.Brianfy(SYSTEM_DATA)
+
 	logger.info('Loading spotify playlists...')
-	const playlists = await player.findPlaylists(brianfy)
+	const playlists = await player.findPlaylists(Brianfy)
 	const playlistNumber = Math.floor(Math.random() * (playlists.length - 1))
-	await player.controls.setVoiceVolume(brianfy, 50)
+
+	await player.controls.setVoiceVolume(Brianfy, 50)
+
 	logger.info('Loading daily information...')
 	const dayInformation = await startDay()
 
@@ -35,7 +35,7 @@ const dailyJob = async () => {
 					</amazon:auto-breaths>
 				</speak>`)
 				.then(() =>
-					player.controls.startPlaylist(brianfy, playlists[playlistNumber])
+					player.controls.startPlaylist(Brianfy, playlists[playlistNumber])
 				)
 				.catch(err => logger.error(err))
 		})
