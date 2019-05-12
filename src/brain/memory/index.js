@@ -1,28 +1,22 @@
 /* eslint-disable */
-import { getFirebaseKnowledge } from '../knowledge'
+import baseKnowledge from '../knowledge'
 
 class Memory {
-	constructor(type) {
-		this.type = type
-	}
+	async getSystemMemory() {
+		const config = await baseKnowledge.instance.retrieveData(
+			await baseKnowledge.instance.getInstance(),
+			'config'
+		)
+		const roles = await baseKnowledge.instance.retrieveData(
+			await baseKnowledge.instance.getInstance(),
+			'roles'
+		)
+		const people = await baseKnowledge.instance.retrieveData(
+			await baseKnowledge.instance.getInstance(),
+			'people'
+		)
 
-	saveMasterInfo(userData) {
-		return console.log(this.type, userData)
-	}
-
-	searchKnowledge(piece = null) {
-		const firebaseKnowledge = getFirebaseKnowledge()
-		const data = firebaseKnowledge.ref(piece)
-
-		return data.on('value', snapshot => console.log(snapshot.val()))
-	}
-
-	async getMemories(piece) {
-		const creator = {
-			name: 'Caio',
-		}
-
-		return this.searchKnowledge(piece)
+		return { config, roles, people }
 	}
 }
 

@@ -1,8 +1,19 @@
 import ParallelDots from './paralleldots'
 import Natural from './natural'
 import getRouteToWork from './location'
-import Brianfy from './spotify'
+import Brianfy, {
+	findPlaylists,
+	setVoiceVolume,
+	startPlaylist
+} from './spotify'
 
-export {
-	ParallelDots, Natural, getRouteToWork, Brianfy,
+const player = {
+	Brianfy,
+	controls: {
+		setVoiceVolume,
+		startPlaylist
+	},
+	findPlaylists
 }
+
+export { ParallelDots, Natural, getRouteToWork, player }

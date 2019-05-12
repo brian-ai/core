@@ -3,7 +3,8 @@ import { getWeatherInformation, giveWeatherAdvise } from './weather'
 import getGreetingTime from '../utils'
 import { getRouteToWork } from '../../../services'
 
-const sayWorkRoute = ({ minutes, name, distance }) => `<p>You should get about of ${minutes} minutes to work by ${name}, the whole path is ${distance} kilometers</p>`
+const sayWorkRoute = ({ minutes, name, distance }) =>
+	`<p>You should get about of ${minutes} minutes to work by ${name}, the whole path is ${distance} kilometers</p>`
 /**
  * startDay
  * @memberof routines
@@ -18,10 +19,15 @@ const startDay = async () => {
 
 	const minutes = +timePieces[0] * 60 + +timePieces[1]
 	const greetingObject = getGreetingTime(moment())
-	const weatherAdvise = giveWeatherAdvise(temperature, greetingObject.humanizedTime)
-	const isWeekend = new Date().getDay() % 6 === 0;
+	const weatherAdvise = giveWeatherAdvise(
+		temperature,
+		greetingObject.humanizedTime
+	)
+	const isWeekend = new Date().getDay() % 6 === 0
 	const route = {
-		minutes, name, distance,
+		minutes,
+		name,
+		distance
 	}
 
 	return `
@@ -31,7 +37,7 @@ const startDay = async () => {
         <break time="200ms"/> Now it's ${temperature} degrees and it's ${skytext}, ${weatherAdvise}}.
         <p>Have a lovely ${greetingObject.humanizedTime}!</p>
         <break time="200ms"/>
-        ${!isWeekend && sayWorkRoute(route)}
+        ${!isWeekend ? sayWorkRoute(route) : ''}
         
         </amazon:auto-breaths>
       </amazon:effect>

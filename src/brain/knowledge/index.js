@@ -1,22 +1,21 @@
-import firebase from 'firebase'
+import rethinkly, { retrieveData } from 'rethinkly'
 import { feelings } from './feelings'
 import NaturalElements from './natural-sentences'
 
-const baseKnowledge = [...feelings, ...NaturalElements]
-
-const getFirebaseKnowledge = () => {
-	const config = {
-		apiKey: 'AIzaSyCexFmvQpRptW5YSjUf8iJtsldMUHNDumg',
-		authDomain: 'sofia-3ed7b.firebaseapp.com',
-		databaseURL: 'https://sofia-3ed7b.firebaseio.com',
-		projectId: 'sophie-3ed7b',
-		storageBucket: '',
-		messagingSenderId: '542396136506',
+const getInstance = () => {
+	const dbConfig = {
+		host: process.env.DB_URL,
+		port: process.env.DB_PORT,
+		db: process.env.DB_NAME
 	}
 
-	return firebase.initializeApp(config).database()
+	return rethinkly(dbConfig)
 }
 
-export { feelings, NaturalElements, getFirebaseKnowledge }
+const baseKnowledge = {
+	feelings,
+	natural: NaturalElements,
+	instance: { getInstance, retrieveData }
+}
 
 export default baseKnowledge

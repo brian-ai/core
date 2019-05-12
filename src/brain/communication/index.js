@@ -1,3 +1,3 @@
-import speak from './speaker'
+import Speak from './speaker'
 
-export default speak
+export default Speak
