@@ -1,35 +1,38 @@
-import natural from 'natural'
+import { BayesClassifier } from 'natural'
 import logger from 'hoopa-logger'
 import baseKnowledge from '../../brain/knowledge'
 
-class Natural {
+class NLP {
 	constructor() {
-		this.Bayes = new natural.BayesClassifier()
 		this.train()
 	}
 
 	train(newKnowledge = null) {
 		logger.info('Cognitive analysis, basic  training...')
-		const { Bayes } = this
+		this.bayes = new BayesClassifier()
 		const trainingContext = baseKnowledge.natural
 
 		if (newKnowledge) {
 			newKnowledge.map(token => trainingContext.push(token))
 		}
 
-		trainingContext.map(token => Bayes.addDocument(token.input, token.class))
-		Bayes.train()
+		trainingContext.map(token =>
+			this.bayes.addDocument(token.input, token.class)
+		)
+		this.bayes.train()
+		logger.info('Bayes training finished!')
 	}
 
 	classify(sentence) {
-		const { Bayes } = this
-		const classification = Bayes.classify(sentence)
+		const classification = this.bayes.classify(sentence)
 
 		if (!classification)
 			return "Sorry, but I don't understand what you've said."
 
-		return `I think that when you're saying ${sentence} this means a ${classification}`
+		logger.info(`Sentence ${sentence} classified: --kind ${classification}`)
+
+		return classification
 	}
 }
 
-export default Natural
+export default NLP

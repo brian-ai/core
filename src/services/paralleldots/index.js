@@ -44,7 +44,7 @@ class ParallelDots {
 			.catch(error => logger.error(error))
 	}
 
-	nplAnalysis(sentence) {
+	nlpAnalysis(sentence) {
 		return this.parallel
 			.ner(sentence)
 			.then(response => response)

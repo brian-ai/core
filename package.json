@@ -12,6 +12,7 @@
 	},
 	"dependencies": {
 		"@mapquest/directions": "^0.3.3",
+		"amqplib": "^0.5.3",
 		"aws-sdk": "^2.270.1",
 		"brain.js": "^1.2.2",
 		"cron": "^1.3.0",

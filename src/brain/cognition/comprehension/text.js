@@ -1,9 +1,10 @@
-import { ParallelDots, Natural } from '../../../services'
+import { ParallelDots, NLP } from '../../../services'
 
 const Parallel = new ParallelDots()
-const NPL = new Natural()
 
-const extractRelevance = sentence => Parallel.extractorAnalysis(sentence)
+const extractRelevance = async sentence => Parallel.extractorAnalysis(sentence)
+
+const extractKeywords = async sentence => Parallel.keywords(sentence)
 
 const extractEmotion = sentence => Parallel.emotionAnalysis(sentence)
 
@@ -15,14 +16,15 @@ const phraseExtractor = sentence => Parallel.phraseExtractor(sentence)
 
 const textParser = sentence => Parallel.textParser(sentence)
 
-const classifySubjects = sentence => NPL.classify(sentence)
+const classifySubjects = sentence => new NLP().classify(sentence)
 
 export {
+	extractKeywords,
 	extractRelevance,
 	extractEmotion,
 	extractSentiment,
 	IsAbusiveInformation,
 	textParser,
 	phraseExtractor,
-	classifySubjects,
+	classifySubjects
 }

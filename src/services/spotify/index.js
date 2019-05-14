@@ -71,11 +71,16 @@ const setVoiceVolume = async (instance, amount = 30) => {
  * @param {Brianfy} instance
  * @returns {Array} Playlists
  */
-const findPlaylists = (instance, musicGenre = 'Jazz') => {
+const findPlaylists = async (instance, musicGenre = 'Jazz') => {
+	let newInstance = instance
+	if (!instance) {
+		newInstance = await authorize()
+	}
+
 	logger.info('Loading spotify playlists...')
 
 	return new Promise(async (resolve, reject) => {
-		instance.searchPlaylists(musicGenre).then(
+		newInstance.searchPlaylists(musicGenre).then(
 			data => {
 				const searchResult = data.body.playlists
 				const playlists = searchResult.items
@@ -97,17 +102,24 @@ const findPlaylists = (instance, musicGenre = 'Jazz') => {
  * @param {Object} playlist
  */
 const startPlaylist = async (instance, playlist) => {
+	let newInstance = instance
+	if (!instance) {
+		newInstance = await authorize()
+	}
+
+	await setVoiceVolume(newInstance, 50)
+
 	try {
 		logger.info(`${playlist.name} started`)
 
-		instance.play({
+		newInstance.play({
 			context_uri: playlist.uri
 		})
 	} catch (error) {
 		return logger.error(error)
 	}
 
-	return setVoiceVolume(instance, 100)
+	return setVoiceVolume(newInstance, 100)
 }
 
 /**
@@ -121,7 +133,7 @@ const Brianfy = async SYSTEM_DATA => {
 	const spotifyToken = SYSTEM_DATA.tokens.find(
 		tokenObj => tokenObj.provider === spotifyID
 	)
-	const spotifyApi = !spotifyToken.access
+	const spotifyApi = spotifyToken.access
 		? await authorize()
 		: loadBrianfy(spotifyToken.access, spotifyToken.refresh)
 
@@ -130,4 +142,4 @@ const Brianfy = async SYSTEM_DATA => {
 
 export default Brianfy
 
-export { findPlaylists, startPlaylist, setVoiceVolume }
+export { authorize, findPlaylists, startPlaylist, setVoiceVolume }

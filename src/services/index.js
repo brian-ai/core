@@ -1,11 +1,12 @@
 import ParallelDots from './paralleldots'
-import Natural from './natural'
+import NLP from './natural'
 import getRouteToWork from './location'
 import Brianfy, {
 	findPlaylists,
 	setVoiceVolume,
 	startPlaylist
 } from './spotify'
+import RabbitMQ from './rabbitmq'
 
 const player = {
 	Brianfy,
@@ -16,4 +17,4 @@ const player = {
 	findPlaylists
 }
 
-export { ParallelDots, Natural, getRouteToWork, player }
+export { ParallelDots, RabbitMQ, NLP, getRouteToWork, player }

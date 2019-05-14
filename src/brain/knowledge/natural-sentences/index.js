@@ -1,142 +1,162 @@
 export default [
 	{
 		input: 'cheap replica watches',
-		class: 'spam',
+		class: 'spam'
 	},
 	{
 		input: 'I think it is a good movie',
-		class: 'positive',
+		class: 'positive'
 	},
 	{
 		input: 'It was good',
-		class: 'positive',
+		class: 'positive'
 	},
 	{
 		input: 'This is  good',
-		class: 'positive',
+		class: 'positive'
 	},
 	{
 		input: 'This is not  good',
-		class: 'negative',
+		class: 'negative'
 	},
 	{
 		input: 'I think it is not a good movie',
-		class: 'negative',
+		class: 'negative'
 	},
 	{
 		input: 'I like apples',
-		class: 'feeling',
+		class: 'feeling'
 	},
 	{
 		input: 'I like you',
-		class: 'feeling',
+		class: 'feeling'
 	},
 	{
 		input: 'Yesterday I drink a lot',
-		class: 'memory',
+		class: 'memory'
 	},
 	{
 		input: 'Yesterday I went by uber',
-		class: 'memory',
+		class: 'memory'
 	},
 	{
 		input: 'Tomorrow I will wake up earlier',
-		class: 'future',
+		class: 'future'
 	},
 	{
 		input: 'At saturday I will wake up earlier',
-		class: 'future',
+		class: 'future'
 	},
 	{
 		input: 'Tomorrow I will get an uber',
-		class: 'future',
+		class: 'future'
 	},
 	{
 		input: 'schedule an uber tomorrow',
-		class: 'schedule action',
+		class: 'schedule action'
 	},
 	{
 		input: 'schedule an uber for me',
-		class: 'schedule action',
+		class: 'schedule action'
 	},
 	{
 		input: "I don't like you",
-		class: 'feeling',
+		class: 'feeling'
 	},
 	{
 		input: 'I do not like you',
-		class: 'feeling',
+		class: 'feeling'
 	},
 	{
 		input: 'I love you',
-		class: 'love',
+		class: 'love'
 	},
 	{
 		input: 'I miss you',
-		class: 'sadness',
+		class: 'sadness'
 	},
 	{
 		input: 'I want a coffee',
-		class: 'will',
+		class: 'will'
 	},
 	{
 		input: "I'm hungry",
-		class: 'hungry',
+		class: 'hungry'
 	},
 	{
 		input: 'I am starving',
-		class: 'hungry',
+		class: 'hungry'
 	},
 	{
 		input: 'free watches',
-		class: 'spam',
+		class: 'spam'
 	},
 	{
 		input: 'lets go to the beach',
-		class: 'invite',
+		class: 'invite'
 	},
 	{
 		input: 'remember me to buy milk',
-		class: 'action',
+		class: 'action'
 	},
 	{
 		input: 'remind me to buy milk',
-		class: 'reminder',
+		class: 'reminder'
 	},
 	{
 		input: 'good week',
-		class: 'good thought',
+		class: 'good thought'
 	},
 	{
 		input: 'bad week',
-		class: 'good thought',
+		class: 'bad thought'
 	},
 	{
 		input: 'buy something',
-		class: 'buy',
+		class: 'buy'
 	},
 	{
 		input: 'I want to buy',
-		class: 'buy',
+		class: 'buy'
 	},
 	{
 		input: 'I want to buy that',
-		class: 'buy',
+		class: 'buy'
 	},
 	{
 		input: 'Where  I can buy that',
-		class: 'find',
+		class: 'find'
 	},
 	{
 		input: 'Where is somewhere',
-		class: 'find',
+		class: 'find'
 	},
 	{
 		input: 'where is london?',
-		class: 'search',
+		class: 'search'
 	},
 	{
 		input: 'Hello, Brian! Where is the London Eye?',
-		class: 'search',
+		class: 'search'
 	},
+	{
+		input: 'Hi, Brian',
+		class: 'greeting'
+	},
+	{
+		input: 'Hello, Brian',
+		class: 'greeting'
+	},
+	{
+		input: 'How are you?',
+		class: 'polite'
+	},
+	{
+		input: 'how are you?',
+		class: 'polite'
+	},
+	{
+		input: 'Are you, ok?',
+		class: 'polite'
+	}
 ]

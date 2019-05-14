@@ -1,7 +1,7 @@
-import { init } from '../brain'
+import brain from '../brain'
 
 describe('main test', () => {
 	it('should exist the brain init function', () => {
-		expect(init).toBeDefined()
+		expect(brain).toBeDefined()
 	})
 })

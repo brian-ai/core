@@ -2,17 +2,21 @@ import logger from 'hoopa-logger'
 import { CronJob } from 'cron'
 // Capabilities
 import Speak from './communication'
+import {
+	playlistHandler,
+	conversationHandler,
+	weatherHandler
+} from './reactions/queue'
 // Knowledge
 import { startDay } from './routines'
 import Memory from './memory'
 // Services
-import { player } from '../services'
+import { RabbitMQ, player } from '../services'
 
 let SYSTEM_DATA
 let Brianfy
 
 const dailyJob = new CronJob('00 30 5 * * 1-5', async () => {
-	// const dailyJob = async () => {
 	/*
 	 * Runs every week days
 	 * at 5:30:00 AM.
@@ -22,7 +26,6 @@ const dailyJob = new CronJob('00 30 5 * * 1-5', async () => {
 
 	player.controls.setVoiceVolume(Brianfy, 50)
 
-	logger.info('Loading daily information...')
 	const dayInformation = await startDay()
 
 	Speak(dayInformation)
@@ -44,11 +47,23 @@ const dailyJob = new CronJob('00 30 5 * * 1-5', async () => {
 		.catch(err => logger.error(err))
 })
 
+const Subscriber = () => {
+	RabbitMQ.subscribeToChannel('playlist_service', msg =>
+		playlistHandler({ player, Brianfy, core: { SYSTEM_DATA } }, msg)
+	)
+	RabbitMQ.subscribeToChannel('conversation_service', msg =>
+		conversationHandler(msg)
+	)
+	RabbitMQ.subscribeToChannel('weather_service', msg => weatherHandler(msg))
+}
+
 const init = async () => {
 	SYSTEM_DATA = await Memory.getSystemMemory()
 	Brianfy = await player.Brianfy(SYSTEM_DATA)
+	Subscriber()
 
 	dailyJob.start()
+	// dailyJob()
 
 	/* eslint-disable no-underscore-dangle */
 	logger.info(
