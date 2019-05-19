@@ -141,11 +141,38 @@ export default [
 	},
 	{
 		input: 'Hi, Brian',
-		class: 'greeting'
+		class: 'greeting',
+		answer: 'Hi There!'
+	},
+	{
+		input: 'Hi, brian! how are you?',
+		class: 'greeting',
+		answer: 'Hi muchacho'
+	},
+	{
+		input: 'Hi',
+		class: 'greeting',
+		answer: 'Hellooow there!'
+	},
+	{
+		input: 'Hello',
+		class: 'greeting',
+		answer: 'I am here to help'
+	},
+	{
+		input: 'Hi, Brian',
+		class: 'greeting',
+		answer: `What's up?!`
+	},
+	{
+		input: 'Hi, Brian',
+		class: 'greeting',
+		answer: 'I was talking with my uncle Jarvis! Sorry!'
 	},
 	{
 		input: 'Hello, Brian',
-		class: 'greeting'
+		class: 'greeting',
+		answer: 'How can I help you?'
 	},
 	{
 		input: 'How are you?',

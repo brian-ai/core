@@ -4,8 +4,8 @@ import NaturalElements from './natural-sentences'
 
 const getInstance = () => {
 	const dbConfig = {
-		host: process.env.DB_URL,
-		port: process.env.DB_PORT,
+		host: process.env.RETHINKDB_URL,
+		port: process.env.RETHINKDB_PORT,
 		db: process.env.DB_NAME
 	}
 

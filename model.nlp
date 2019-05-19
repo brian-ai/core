@@ -1,0 +1,1803 @@
+{
+  "settings": {
+    "languages": "en"
+  },
+  "nluManager": {
+    "settings": {},
+    "languages": [
+      "en"
+    ],
+    "intentDomains": {},
+    "domainManagers": {
+      "en": {
+        "settings": {
+          "language": "en",
+          "config": {
+            "activation": "leaky-relu",
+            "hiddenLayers": [],
+            "iterations": 20000,
+            "learningRate": 0.8,
+            "errorThresh": 0.00005,
+            "momentum": 0.5,
+            "deltaErrorThresh": 0.000001,
+            "maxDecimals": 9,
+            "leakyReluAlpha": 0.06,
+            "timeout": 120000
+          }
+        },
+        "language": "en",
+        "nluClassName": "BrainNLU",
+        "useMasterDomain": true,
+        "trainByDomain": true,
+        "keepStopwords": true,
+        "stemDict": {
+          "cheap,replica,watch": {
+            "domain": "default",
+            "intent": "spam"
+          },
+          "a,good,i,is,it,movi,think": {
+            "domain": "default",
+            "intent": "positive"
+          },
+          "good,it,was": {
+            "domain": "default",
+            "intent": "positive"
+          },
+          "good,is,this": {
+            "domain": "default",
+            "intent": "positive"
+          },
+          "good,is,not,this": {
+            "domain": "default",
+            "intent": "negative"
+          },
+          "a,good,i,is,it,movi,not,think": {
+            "domain": "default",
+            "intent": "negative"
+          },
+          "appl,i,like": {
+            "domain": "default",
+            "intent": "feeling"
+          },
+          "i,like,you": {
+            "domain": "default",
+            "intent": "feeling"
+          },
+          "a,drink,i,lot,yesterday": {
+            "domain": "default",
+            "intent": "memory"
+          },
+          "by,i,uber,went,yesterday": {
+            "domain": "default",
+            "intent": "memory"
+          },
+          "earlier,i,tomorrow,up,wake,will": {
+            "domain": "default",
+            "intent": "future"
+          },
+          "at,earlier,i,saturday,up,wake,will": {
+            "domain": "default",
+            "intent": "future"
+          },
+          "an,get,i,tomorrow,uber,will": {
+            "domain": "default",
+            "intent": "future"
+          },
+          "an,schedul,tomorrow,uber": {
+            "domain": "default",
+            "intent": "schedule action"
+          },
+          "an,for,me,schedul,uber": {
+            "domain": "default",
+            "intent": "schedule action"
+          },
+          "do,i,like,not,you": {
+            "domain": "default",
+            "intent": "feeling"
+          },
+          "i,love,you": {
+            "domain": "default",
+            "intent": "love"
+          },
+          "i,miss,you": {
+            "domain": "default",
+            "intent": "sadness"
+          },
+          "a,coffe,i,want": {
+            "domain": "default",
+            "intent": "will"
+          },
+          "am,hungri,i": {
+            "domain": "default",
+            "intent": "hungry"
+          },
+          "am,i,starv": {
+            "domain": "default",
+            "intent": "hungry"
+          },
+          "free,watch": {
+            "domain": "default",
+            "intent": "spam"
+          },
+          "beach,go,let,the,to": {
+            "domain": "default",
+            "intent": "invite"
+          },
+          "buy,me,milk,rememb,to": {
+            "domain": "default",
+            "intent": "action"
+          },
+          "buy,me,milk,remind,to": {
+            "domain": "default",
+            "intent": "reminder"
+          },
+          "good,week": {
+            "domain": "default",
+            "intent": "good thought"
+          },
+          "bad,week": {
+            "domain": "default",
+            "intent": "bad thought"
+          },
+          "buy,someth": {
+            "domain": "default",
+            "intent": "buy"
+          },
+          "buy,i,to,want": {
+            "domain": "default",
+            "intent": "buy"
+          },
+          "buy,i,that,to,want": {
+            "domain": "default",
+            "intent": "buy"
+          },
+          "buy,can,i,that,where": {
+            "domain": "default",
+            "intent": "find"
+          },
+          "is,somewher,where": {
+            "domain": "default",
+            "intent": "find"
+          },
+          "is,london,where": {
+            "domain": "default",
+            "intent": "search"
+          },
+          "brian,eye,hello,is,london,the,where": {
+            "domain": "default",
+            "intent": "search"
+          },
+          "brian,hi": {
+            "domain": "default",
+            "intent": "greeting"
+          },
+          "brian,hello": {
+            "domain": "default",
+            "intent": "greeting"
+          },
+          "are,how,you": {
+            "domain": "default",
+            "intent": "polite"
+          },
+          "are,ok,you": {
+            "domain": "default",
+            "intent": "polite"
+          }
+        },
+        "intentDict": {
+          "spam": "default",
+          "positive": "default",
+          "negative": "default",
+          "feeling": "default",
+          "memory": "default",
+          "future": "default",
+          "schedule action": "default",
+          "love": "default",
+          "sadness": "default",
+          "will": "default",
+          "hungry": "default",
+          "invite": "default",
+          "action": "default",
+          "reminder": "default",
+          "good thought": "default",
+          "bad thought": "default",
+          "buy": "default",
+          "find": "default",
+          "search": "default",
+          "greeting": "default",
+          "polite": "default"
+        },
+        "useStemDict": true,
+        "domains": {
+          "master_domain": {
+            "settings": {
+              "language": "en",
+              "config": {
+                "activation": "leaky-relu",
+                "hiddenLayers": [],
+                "iterations": 20000,
+                "learningRate": 0.8,
+                "errorThresh": 0.00005,
+                "momentum": 0.5,
+                "deltaErrorThresh": 0.000001,
+                "maxDecimals": 9,
+                "leakyReluAlpha": 0.06,
+                "timeout": 120000
+              }
+            },
+            "language": "en",
+            "keepStopwords": true,
+            "docs": [
+              {
+                "intent": "default",
+                "utterance": [
+                  "cheap",
+                  "replica",
+                  "watch"
+                ],
+                "tokens": [
+                  "cheap",
+                  "replica",
+                  "watch"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "i",
+                  "think",
+                  "it",
+                  "is",
+                  "a",
+                  "good",
+                  "movi"
+                ],
+                "tokens": [
+                  "i",
+                  "think",
+                  "it",
+                  "is",
+                  "a",
+                  "good",
+                  "movi"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "it",
+                  "was",
+                  "good"
+                ],
+                "tokens": [
+                  "it",
+                  "was",
+                  "good"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "this",
+                  "is",
+                  "good"
+                ],
+                "tokens": [
+                  "this",
+                  "is",
+                  "good"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "this",
+                  "is",
+                  "not",
+                  "good"
+                ],
+                "tokens": [
+                  "this",
+                  "is",
+                  "not",
+                  "good"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "i",
+                  "think",
+                  "it",
+                  "is",
+                  "not",
+                  "a",
+                  "good",
+                  "movi"
+                ],
+                "tokens": [
+                  "i",
+                  "think",
+                  "it",
+                  "is",
+                  "not",
+                  "a",
+                  "good",
+                  "movi"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "i",
+                  "like",
+                  "appl"
+                ],
+                "tokens": [
+                  "i",
+                  "like",
+                  "appl"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "i",
+                  "like",
+                  "you"
+                ],
+                "tokens": [
+                  "i",
+                  "like",
+                  "you"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "yesterday",
+                  "i",
+                  "drink",
+                  "a",
+                  "lot"
+                ],
+                "tokens": [
+                  "yesterday",
+                  "i",
+                  "drink",
+                  "a",
+                  "lot"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "yesterday",
+                  "i",
+                  "went",
+                  "by",
+                  "uber"
+                ],
+                "tokens": [
+                  "yesterday",
+                  "i",
+                  "went",
+                  "by",
+                  "uber"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "tomorrow",
+                  "i",
+                  "will",
+                  "wake",
+                  "up",
+                  "earlier"
+                ],
+                "tokens": [
+                  "tomorrow",
+                  "i",
+                  "will",
+                  "wake",
+                  "up",
+                  "earlier"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "at",
+                  "saturday",
+                  "i",
+                  "will",
+                  "wake",
+                  "up",
+                  "earlier"
+                ],
+                "tokens": [
+                  "at",
+                  "saturday",
+                  "i",
+                  "will",
+                  "wake",
+                  "up",
+                  "earlier"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "tomorrow",
+                  "i",
+                  "will",
+                  "get",
+                  "an",
+                  "uber"
+                ],
+                "tokens": [
+                  "tomorrow",
+                  "i",
+                  "will",
+                  "get",
+                  "an",
+                  "uber"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "schedul",
+                  "an",
+                  "uber",
+                  "tomorrow"
+                ],
+                "tokens": [
+                  "schedul",
+                  "an",
+                  "uber",
+                  "tomorrow"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "schedul",
+                  "an",
+                  "uber",
+                  "for",
+                  "me"
+                ],
+                "tokens": [
+                  "schedul",
+                  "an",
+                  "uber",
+                  "for",
+                  "me"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "i",
+                  "do",
+                  "not",
+                  "like",
+                  "you"
+                ],
+                "tokens": [
+                  "i",
+                  "do",
+                  "not",
+                  "like",
+                  "you"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "i",
+                  "love",
+                  "you"
+                ],
+                "tokens": [
+                  "i",
+                  "love",
+                  "you"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "i",
+                  "miss",
+                  "you"
+                ],
+                "tokens": [
+                  "i",
+                  "miss",
+                  "you"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "i",
+                  "want",
+                  "a",
+                  "coffe"
+                ],
+                "tokens": [
+                  "i",
+                  "want",
+                  "a",
+                  "coffe"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "i",
+                  "am",
+                  "hungri"
+                ],
+                "tokens": [
+                  "i",
+                  "am",
+                  "hungri"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "i",
+                  "am",
+                  "starv"
+                ],
+                "tokens": [
+                  "i",
+                  "am",
+                  "starv"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "free",
+                  "watch"
+                ],
+                "tokens": [
+                  "free",
+                  "watch"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "let",
+                  "go",
+                  "to",
+                  "the",
+                  "beach"
+                ],
+                "tokens": [
+                  "let",
+                  "go",
+                  "to",
+                  "the",
+                  "beach"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "rememb",
+                  "me",
+                  "to",
+                  "buy",
+                  "milk"
+                ],
+                "tokens": [
+                  "rememb",
+                  "me",
+                  "to",
+                  "buy",
+                  "milk"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "remind",
+                  "me",
+                  "to",
+                  "buy",
+                  "milk"
+                ],
+                "tokens": [
+                  "remind",
+                  "me",
+                  "to",
+                  "buy",
+                  "milk"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "good",
+                  "week"
+                ],
+                "tokens": [
+                  "good",
+                  "week"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "bad",
+                  "week"
+                ],
+                "tokens": [
+                  "bad",
+                  "week"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "buy",
+                  "someth"
+                ],
+                "tokens": [
+                  "buy",
+                  "someth"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "i",
+                  "want",
+                  "to",
+                  "buy"
+                ],
+                "tokens": [
+                  "i",
+                  "want",
+                  "to",
+                  "buy"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "i",
+                  "want",
+                  "to",
+                  "buy",
+                  "that"
+                ],
+                "tokens": [
+                  "i",
+                  "want",
+                  "to",
+                  "buy",
+                  "that"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "where",
+                  "i",
+                  "can",
+                  "buy",
+                  "that"
+                ],
+                "tokens": [
+                  "where",
+                  "i",
+                  "can",
+                  "buy",
+                  "that"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "where",
+                  "is",
+                  "somewher"
+                ],
+                "tokens": [
+                  "where",
+                  "is",
+                  "somewher"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "where",
+                  "is",
+                  "london"
+                ],
+                "tokens": [
+                  "where",
+                  "is",
+                  "london"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "hello",
+                  "brian",
+                  "where",
+                  "is",
+                  "the",
+                  "london",
+                  "eye"
+                ],
+                "tokens": [
+                  "hello",
+                  "brian",
+                  "where",
+                  "is",
+                  "the",
+                  "london",
+                  "eye"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "hi",
+                  "brian"
+                ],
+                "tokens": [
+                  "hi",
+                  "brian"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "hello",
+                  "brian"
+                ],
+                "tokens": [
+                  "hello",
+                  "brian"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "how",
+                  "are",
+                  "you"
+                ],
+                "tokens": [
+                  "how",
+                  "are",
+                  "you"
+                ]
+              },
+              {
+                "intent": "default",
+                "utterance": [
+                  "are",
+                  "you",
+                  "ok"
+                ],
+                "tokens": [
+                  "are",
+                  "you",
+                  "ok"
+                ]
+              }
+            ],
+            "features": {
+              "cheap": 1,
+              "replica": 1,
+              "watch": 2,
+              "i": 18,
+              "think": 2,
+              "it": 3,
+              "is": 7,
+              "a": 4,
+              "good": 6,
+              "movi": 2,
+              "was": 1,
+              "this": 2,
+              "not": 3,
+              "like": 3,
+              "appl": 1,
+              "you": 6,
+              "yesterday": 2,
+              "drink": 1,
+              "lot": 1,
+              "went": 1,
+              "by": 1,
+              "uber": 4,
+              "tomorrow": 3,
+              "will": 3,
+              "wake": 2,
+              "up": 2,
+              "earlier": 2,
+              "at": 1,
+              "saturday": 1,
+              "get": 1,
+              "an": 3,
+              "schedul": 2,
+              "for": 1,
+              "me": 3,
+              "do": 1,
+              "love": 1,
+              "miss": 1,
+              "want": 3,
+              "coffe": 1,
+              "am": 2,
+              "hungri": 1,
+              "starv": 1,
+              "free": 1,
+              "let": 1,
+              "go": 1,
+              "to": 5,
+              "the": 2,
+              "beach": 1,
+              "rememb": 1,
+              "buy": 6,
+              "milk": 2,
+              "remind": 1,
+              "week": 2,
+              "bad": 1,
+              "someth": 1,
+              "that": 2,
+              "where": 4,
+              "can": 1,
+              "somewher": 1,
+              "london": 2,
+              "hello": 2,
+              "brian": 3,
+              "eye": 1,
+              "hi": 1,
+              "how": 1,
+              "are": 2,
+              "ok": 1
+            },
+            "isEditing": false,
+            "className": "BrainNLU",
+            "classifier": {
+              "className": "BrainClassifier",
+              "settings": {
+                "language": "en",
+                "config": {
+                  "activation": "leaky-relu",
+                  "hiddenLayers": [],
+                  "iterations": 20000,
+                  "learningRate": 0.8,
+                  "errorThresh": 0.00005,
+                  "momentum": 0.5,
+                  "deltaErrorThresh": 0.000001,
+                  "maxDecimals": 9,
+                  "leakyReluAlpha": 0.06,
+                  "timeout": 120000
+                }
+              },
+              "labels": [],
+              "network": {
+                "layers": [],
+                "trainOpts": {
+                  "iterations": 20000,
+                  "errorThresh": 0.00005,
+                  "deltaErrorThresh": 0.000001,
+                  "learningRate": 0.8,
+                  "momentum": 0.5,
+                  "leakyReluAlpha": 0.06,
+                  "maxDecimals": 9
+                }
+              }
+            }
+          },
+          "default": {
+            "settings": {
+              "language": "en",
+              "config": {
+                "activation": "leaky-relu",
+                "hiddenLayers": [],
+                "iterations": 20000,
+                "learningRate": 0.8,
+                "errorThresh": 0.00005,
+                "momentum": 0.5,
+                "deltaErrorThresh": 0.000001,
+                "maxDecimals": 9,
+                "leakyReluAlpha": 0.06,
+                "timeout": 120000
+              }
+            },
+            "language": "en",
+            "keepStopwords": true,
+            "docs": [
+              {
+                "intent": "spam",
+                "utterance": [
+                  "cheap",
+                  "replica",
+                  "watch"
+                ],
+                "tokens": [
+                  "cheap",
+                  "replica",
+                  "watch"
+                ]
+              },
+              {
+                "intent": "positive",
+                "utterance": [
+                  "i",
+                  "think",
+                  "it",
+                  "is",
+                  "a",
+                  "good",
+                  "movi"
+                ],
+                "tokens": [
+                  "i",
+                  "think",
+                  "it",
+                  "is",
+                  "a",
+                  "good",
+                  "movi"
+                ]
+              },
+              {
+                "intent": "positive",
+                "utterance": [
+                  "it",
+                  "was",
+                  "good"
+                ],
+                "tokens": [
+                  "it",
+                  "was",
+                  "good"
+                ]
+              },
+              {
+                "intent": "positive",
+                "utterance": [
+                  "this",
+                  "is",
+                  "good"
+                ],
+                "tokens": [
+                  "this",
+                  "is",
+                  "good"
+                ]
+              },
+              {
+                "intent": "negative",
+                "utterance": [
+                  "this",
+                  "is",
+                  "not",
+                  "good"
+                ],
+                "tokens": [
+                  "this",
+                  "is",
+                  "not",
+                  "good"
+                ]
+              },
+              {
+                "intent": "negative",
+                "utterance": [
+                  "i",
+                  "think",
+                  "it",
+                  "is",
+                  "not",
+                  "a",
+                  "good",
+                  "movi"
+                ],
+                "tokens": [
+                  "i",
+                  "think",
+                  "it",
+                  "is",
+                  "not",
+                  "a",
+                  "good",
+                  "movi"
+                ]
+              },
+              {
+                "intent": "feeling",
+                "utterance": [
+                  "i",
+                  "like",
+                  "appl"
+                ],
+                "tokens": [
+                  "i",
+                  "like",
+                  "appl"
+                ]
+              },
+              {
+                "intent": "feeling",
+                "utterance": [
+                  "i",
+                  "like",
+                  "you"
+                ],
+                "tokens": [
+                  "i",
+                  "like",
+                  "you"
+                ]
+              },
+              {
+                "intent": "memory",
+                "utterance": [
+                  "yesterday",
+                  "i",
+                  "drink",
+                  "a",
+                  "lot"
+                ],
+                "tokens": [
+                  "yesterday",
+                  "i",
+                  "drink",
+                  "a",
+                  "lot"
+                ]
+              },
+              {
+                "intent": "memory",
+                "utterance": [
+                  "yesterday",
+                  "i",
+                  "went",
+                  "by",
+                  "uber"
+                ],
+                "tokens": [
+                  "yesterday",
+                  "i",
+                  "went",
+                  "by",
+                  "uber"
+                ]
+              },
+              {
+                "intent": "future",
+                "utterance": [
+                  "tomorrow",
+                  "i",
+                  "will",
+                  "wake",
+                  "up",
+                  "earlier"
+                ],
+                "tokens": [
+                  "tomorrow",
+                  "i",
+                  "will",
+                  "wake",
+                  "up",
+                  "earlier"
+                ]
+              },
+              {
+                "intent": "future",
+                "utterance": [
+                  "at",
+                  "saturday",
+                  "i",
+                  "will",
+                  "wake",
+                  "up",
+                  "earlier"
+                ],
+                "tokens": [
+                  "at",
+                  "saturday",
+                  "i",
+                  "will",
+                  "wake",
+                  "up",
+                  "earlier"
+                ]
+              },
+              {
+                "intent": "future",
+                "utterance": [
+                  "tomorrow",
+                  "i",
+                  "will",
+                  "get",
+                  "an",
+                  "uber"
+                ],
+                "tokens": [
+                  "tomorrow",
+                  "i",
+                  "will",
+                  "get",
+                  "an",
+                  "uber"
+                ]
+              },
+              {
+                "intent": "schedule action",
+                "utterance": [
+                  "schedul",
+                  "an",
+                  "uber",
+                  "tomorrow"
+                ],
+                "tokens": [
+                  "schedul",
+                  "an",
+                  "uber",
+                  "tomorrow"
+                ]
+              },
+              {
+                "intent": "schedule action",
+                "utterance": [
+                  "schedul",
+                  "an",
+                  "uber",
+                  "for",
+                  "me"
+                ],
+                "tokens": [
+                  "schedul",
+                  "an",
+                  "uber",
+                  "for",
+                  "me"
+                ]
+              },
+              {
+                "intent": "feeling",
+                "utterance": [
+                  "i",
+                  "do",
+                  "not",
+                  "like",
+                  "you"
+                ],
+                "tokens": [
+                  "i",
+                  "do",
+                  "not",
+                  "like",
+                  "you"
+                ]
+              },
+              {
+                "intent": "love",
+                "utterance": [
+                  "i",
+                  "love",
+                  "you"
+                ],
+                "tokens": [
+                  "i",
+                  "love",
+                  "you"
+                ]
+              },
+              {
+                "intent": "sadness",
+                "utterance": [
+                  "i",
+                  "miss",
+                  "you"
+                ],
+                "tokens": [
+                  "i",
+                  "miss",
+                  "you"
+                ]
+              },
+              {
+                "intent": "will",
+                "utterance": [
+                  "i",
+                  "want",
+                  "a",
+                  "coffe"
+                ],
+                "tokens": [
+                  "i",
+                  "want",
+                  "a",
+                  "coffe"
+                ]
+              },
+              {
+                "intent": "hungry",
+                "utterance": [
+                  "i",
+                  "am",
+                  "hungri"
+                ],
+                "tokens": [
+                  "i",
+                  "am",
+                  "hungri"
+                ]
+              },
+              {
+                "intent": "hungry",
+                "utterance": [
+                  "i",
+                  "am",
+                  "starv"
+                ],
+                "tokens": [
+                  "i",
+                  "am",
+                  "starv"
+                ]
+              },
+              {
+                "intent": "spam",
+                "utterance": [
+                  "free",
+                  "watch"
+                ],
+                "tokens": [
+                  "free",
+                  "watch"
+                ]
+              },
+              {
+                "intent": "invite",
+                "utterance": [
+                  "let",
+                  "go",
+                  "to",
+                  "the",
+                  "beach"
+                ],
+                "tokens": [
+                  "let",
+                  "go",
+                  "to",
+                  "the",
+                  "beach"
+                ]
+              },
+              {
+                "intent": "action",
+                "utterance": [
+                  "rememb",
+                  "me",
+                  "to",
+                  "buy",
+                  "milk"
+                ],
+                "tokens": [
+                  "rememb",
+                  "me",
+                  "to",
+                  "buy",
+                  "milk"
+                ]
+              },
+              {
+                "intent": "reminder",
+                "utterance": [
+                  "remind",
+                  "me",
+                  "to",
+                  "buy",
+                  "milk"
+                ],
+                "tokens": [
+                  "remind",
+                  "me",
+                  "to",
+                  "buy",
+                  "milk"
+                ]
+              },
+              {
+                "intent": "good thought",
+                "utterance": [
+                  "good",
+                  "week"
+                ],
+                "tokens": [
+                  "good",
+                  "week"
+                ]
+              },
+              {
+                "intent": "bad thought",
+                "utterance": [
+                  "bad",
+                  "week"
+                ],
+                "tokens": [
+                  "bad",
+                  "week"
+                ]
+              },
+              {
+                "intent": "buy",
+                "utterance": [
+                  "buy",
+                  "someth"
+                ],
+                "tokens": [
+                  "buy",
+                  "someth"
+                ]
+              },
+              {
+                "intent": "buy",
+                "utterance": [
+                  "i",
+                  "want",
+                  "to",
+                  "buy"
+                ],
+                "tokens": [
+                  "i",
+                  "want",
+                  "to",
+                  "buy"
+                ]
+              },
+              {
+                "intent": "buy",
+                "utterance": [
+                  "i",
+                  "want",
+                  "to",
+                  "buy",
+                  "that"
+                ],
+                "tokens": [
+                  "i",
+                  "want",
+                  "to",
+                  "buy",
+                  "that"
+                ]
+              },
+              {
+                "intent": "find",
+                "utterance": [
+                  "where",
+                  "i",
+                  "can",
+                  "buy",
+                  "that"
+                ],
+                "tokens": [
+                  "where",
+                  "i",
+                  "can",
+                  "buy",
+                  "that"
+                ]
+              },
+              {
+                "intent": "find",
+                "utterance": [
+                  "where",
+                  "is",
+                  "somewher"
+                ],
+                "tokens": [
+                  "where",
+                  "is",
+                  "somewher"
+                ]
+              },
+              {
+                "intent": "search",
+                "utterance": [
+                  "where",
+                  "is",
+                  "london"
+                ],
+                "tokens": [
+                  "where",
+                  "is",
+                  "london"
+                ]
+              },
+              {
+                "intent": "search",
+                "utterance": [
+                  "hello",
+                  "brian",
+                  "where",
+                  "is",
+                  "the",
+                  "london",
+                  "eye"
+                ],
+                "tokens": [
+                  "hello",
+                  "brian",
+                  "where",
+                  "is",
+                  "the",
+                  "london",
+                  "eye"
+                ]
+              },
+              {
+                "intent": "greeting",
+                "utterance": [
+                  "hi",
+                  "brian"
+                ],
+                "tokens": [
+                  "hi",
+                  "brian"
+                ]
+              },
+              {
+                "intent": "greeting",
+                "utterance": [
+                  "hello",
+                  "brian"
+                ],
+                "tokens": [
+                  "hello",
+                  "brian"
+                ]
+              },
+              {
+                "intent": "polite",
+                "utterance": [
+                  "how",
+                  "are",
+                  "you"
+                ],
+                "tokens": [
+                  "how",
+                  "are",
+                  "you"
+                ]
+              },
+              {
+                "intent": "polite",
+                "utterance": [
+                  "are",
+                  "you",
+                  "ok"
+                ],
+                "tokens": [
+                  "are",
+                  "you",
+                  "ok"
+                ]
+              }
+            ],
+            "features": {
+              "cheap": 1,
+              "replica": 1,
+              "watch": 2,
+              "i": 18,
+              "think": 2,
+              "it": 3,
+              "is": 7,
+              "a": 4,
+              "good": 6,
+              "movi": 2,
+              "was": 1,
+              "this": 2,
+              "not": 3,
+              "like": 3,
+              "appl": 1,
+              "you": 6,
+              "yesterday": 2,
+              "drink": 1,
+              "lot": 1,
+              "went": 1,
+              "by": 1,
+              "uber": 4,
+              "tomorrow": 3,
+              "will": 3,
+              "wake": 2,
+              "up": 2,
+              "earlier": 2,
+              "at": 1,
+              "saturday": 1,
+              "get": 1,
+              "an": 3,
+              "schedul": 2,
+              "for": 1,
+              "me": 3,
+              "do": 1,
+              "love": 1,
+              "miss": 1,
+              "want": 3,
+              "coffe": 1,
+              "am": 2,
+              "hungri": 1,
+              "starv": 1,
+              "free": 1,
+              "let": 1,
+              "go": 1,
+              "to": 5,
+              "the": 2,
+              "beach": 1,
+              "rememb": 1,
+              "buy": 6,
+              "milk": 2,
+              "remind": 1,
+              "week": 2,
+              "bad": 1,
+              "someth": 1,
+              "that": 2,
+              "where": 4,
+              "can": 1,
+              "somewher": 1,
+              "london": 2,
+              "hello": 2,
+              "brian": 3,
+              "eye": 1,
+              "hi": 1,
+              "how": 1,
+              "are": 2,
+              "ok": 1
+            },
+            "isEditing": false,
+            "className": "BrainNLU",
+            "classifier": {
+              "className": "BrainClassifier",
+              "settings": {
+                "language": "en",
+                "config": {
+                  "activation": "leaky-relu",
+                  "hiddenLayers": [],
+                  "iterations": 20000,
+                  "learningRate": 0.8,
+                  "errorThresh": 0.00005,
+                  "momentum": 0.5,
+                  "deltaErrorThresh": 0.000001,
+                  "maxDecimals": 9,
+                  "leakyReluAlpha": 0.06,
+                  "timeout": 120000
+                }
+              },
+              "labels": [],
+              "network": {
+                "layers": [],
+                "trainOpts": {
+                  "iterations": 20000,
+                  "errorThresh": 0.00005,
+                  "deltaErrorThresh": 0.000001,
+                  "learningRate": 0.8,
+                  "momentum": 0.5,
+                  "leakyReluAlpha": 0.06,
+                  "maxDecimals": 9
+                }
+              }
+            }
+          }
+        }
+      }
+    },
+    "extraSentences": [
+      [
+        "en",
+        "cheap replica watches"
+      ],
+      [
+        "en",
+        "I think it is a good movie"
+      ],
+      [
+        "en",
+        "It was good"
+      ],
+      [
+        "en",
+        "This is  good"
+      ],
+      [
+        "en",
+        "This is not  good"
+      ],
+      [
+        "en",
+        "I think it is not a good movie"
+      ],
+      [
+        "en",
+        "I like apples"
+      ],
+      [
+        "en",
+        "I like you"
+      ],
+      [
+        "en",
+        "Yesterday I drink a lot"
+      ],
+      [
+        "en",
+        "Yesterday I went by uber"
+      ],
+      [
+        "en",
+        "Tomorrow I will wake up earlier"
+      ],
+      [
+        "en",
+        "At saturday I will wake up earlier"
+      ],
+      [
+        "en",
+        "Tomorrow I will get an uber"
+      ],
+      [
+        "en",
+        "schedule an uber tomorrow"
+      ],
+      [
+        "en",
+        "schedule an uber for me"
+      ],
+      [
+        "en",
+        "I don't like you"
+      ],
+      [
+        "en",
+        "I do not like you"
+      ],
+      [
+        "en",
+        "I love you"
+      ],
+      [
+        "en",
+        "I miss you"
+      ],
+      [
+        "en",
+        "I want a coffee"
+      ],
+      [
+        "en",
+        "I'm hungry"
+      ],
+      [
+        "en",
+        "I am starving"
+      ],
+      [
+        "en",
+        "free watches"
+      ],
+      [
+        "en",
+        "lets go to the beach"
+      ],
+      [
+        "en",
+        "remember me to buy milk"
+      ],
+      [
+        "en",
+        "remind me to buy milk"
+      ],
+      [
+        "en",
+        "good week"
+      ],
+      [
+        "en",
+        "bad week"
+      ],
+      [
+        "en",
+        "buy something"
+      ],
+      [
+        "en",
+        "I want to buy"
+      ],
+      [
+        "en",
+        "I want to buy that"
+      ],
+      [
+        "en",
+        "Where  I can buy that"
+      ],
+      [
+        "en",
+        "Where is somewhere"
+      ],
+      [
+        "en",
+        "where is london?"
+      ],
+      [
+        "en",
+        "Hello, Brian! Where is the London Eye?"
+      ],
+      [
+        "en",
+        "Hi, Brian"
+      ],
+      [
+        "en",
+        "Hello, Brian"
+      ],
+      [
+        "en",
+        "How are you?"
+      ],
+      [
+        "en",
+        "how are you?"
+      ],
+      [
+        "en",
+        "Are you, ok?"
+      ]
+    ]
+  },
+  "nerManager": {
+    "settings": {},
+    "threshold": 0.8,
+    "builtins": [
+      "Number",
+      "Ordinal",
+      "Percentage",
+      "Age",
+      "Currency",
+      "Dimension",
+      "Temperature",
+      "DateTime",
+      "PhoneNumber",
+      "IpAddress",
+      "Boolean",
+      "Email",
+      "Hashtag",
+      "URL"
+    ],
+    "namedEntities": {}
+  },
+  "slotManager": {},
+  "responses": {
+    "en": {
+      "greeting": [
+        {
+          "response": "Hi There!"
+        },
+        {
+          "response": "May the force be with you"
+        }
+      ]
+    }
+  },
+  "actions": {}
+}

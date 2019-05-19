@@ -60,10 +60,16 @@ const authorize = () => {
 	})
 }
 
-const setVoiceVolume = async (instance, amount = 30) => {
+const setVoiceVolume = async (amount = 30, instance) => {
+	let newInstance = instance
+	if (!instance) {
+		newInstance = await authorize()
+		logger.info('Getting spotify credentials')
+	}
+
 	logger.info(`Setting volume to: ${amount}`)
 
-	return instance.setVolume(amount)
+	return newInstance.setVolume(amount)
 }
 
 /**
@@ -71,10 +77,11 @@ const setVoiceVolume = async (instance, amount = 30) => {
  * @param {Brianfy} instance
  * @returns {Array} Playlists
  */
-const findPlaylists = async (instance, musicGenre = 'Jazz') => {
+const findPlaylists = async (musicGenre = 'Jazz', instance) => {
 	let newInstance = instance
 	if (!instance) {
 		newInstance = await authorize()
+		logger.info('Getting spotify credentials')
 	}
 
 	logger.info('Loading spotify playlists...')
@@ -101,13 +108,13 @@ const findPlaylists = async (instance, musicGenre = 'Jazz') => {
  * @param {Brianfy} instance
  * @param {Object} playlist
  */
-const startPlaylist = async (instance, playlist) => {
+const startPlaylist = async (playlist, instance) => {
 	let newInstance = instance
 	if (!instance) {
 		newInstance = await authorize()
+		logger.info('Getting spotify credentials')
 	}
-
-	await setVoiceVolume(newInstance, 50)
+	await setVoiceVolume(50, newInstance)
 
 	try {
 		logger.info(`${playlist.name} started`)
@@ -119,7 +126,7 @@ const startPlaylist = async (instance, playlist) => {
 		return logger.error(error)
 	}
 
-	return setVoiceVolume(newInstance, 100)
+	return setVoiceVolume(100)
 }
 
 /**
@@ -133,7 +140,7 @@ const Brianfy = async SYSTEM_DATA => {
 	const spotifyToken = SYSTEM_DATA.tokens.find(
 		tokenObj => tokenObj.provider === spotifyID
 	)
-	const spotifyApi = spotifyToken.access
+	const spotifyApi = !(spotifyToken && spotifyToken.access)
 		? await authorize()
 		: loadBrianfy(spotifyToken.access, spotifyToken.refresh)
 

@@ -1,4 +1,7 @@
-import startDay from './start-day'
+import Daily from './daily'
 
-/* eslint-disable import/prefer-default-export */
-export { startDay }
+const Routines = player => {
+	return Daily('00 30 5 * * 1-5', 'Daily Job', player)
+}
+
+export default Routines

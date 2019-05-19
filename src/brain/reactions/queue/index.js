@@ -1,17 +1,21 @@
 import logger from 'hoopa-logger'
 import Speak from '../../communication'
-import { analyseSentence } from '../../cognition/comprehension'
+import IDontKnowThat from '../../cognition/comprehension'
 
-const greeting = ['Hi There!', 'Hi muchacho!', 'Hellooow there!', `What's up?!`]
-
-const playlistHandler = async ({ player, Brianfy }, { content }) => {
+const playlistHandler = async ({ player }, { content }) => {
+	const greeting = [
+		'Hi There!',
+		'Hi muchacho!',
+		'Hellooow there!',
+		`What's up?!`
+	]
 	const playlistObject = JSON.parse(content)
 	const options = JSON.parse(playlistObject.options) || {}
-	const playlists = await player.findPlaylists(Brianfy, playlistObject.data)
+	const playlists = await player.findPlaylists(playlistObject.data)
 	const results = playlists.length
 	const { data } = playlistObject
 
-	player.controls.setVoiceVolume(Brianfy, 50)
+	player.controls.setVoiceVolume(50)
 
 	await Speak(`
 	    <speak>
@@ -35,14 +39,30 @@ const playlistHandler = async ({ player, Brianfy }, { content }) => {
 	        </speak>
 	    `)
 
-		await player.controls.startPlaylist(Brianfy, playlists[0])
+		await player.controls.startPlaylist(playlists[0])
 	}
 }
 
-const conversationHandler = async ({ content }) => {
-	analyseSentence(content)
-
+const conversationHandler = async ({ content }, LanguageProcessor) => {
 	logger.info(`Conversation control: received ${content}`)
+	const { data } = JSON.parse(content)
+
+	const { answer } = await LanguageProcessor.process('en', data)
+
+	if (!answer) {
+		return IDontKnowThat(data)
+	}
+
+	return Speak(`
+	    <speak>
+	        <amazon:effect vocal-tract-length="+5%">
+	            <amazon:auto-breaths>
+                    ${answer}
+	            </amazon:auto-breaths>
+	        </amazon:effect>
+	    </speak>
+	`)
+	// analyseSentence(content)
 }
 
 const weatherHandler = ({ content }) =>

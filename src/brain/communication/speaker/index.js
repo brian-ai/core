@@ -36,7 +36,7 @@ const speak = phrase =>
 			})
 
 			speaker.write(Buffer.from(new Uint8Array(res.AudioStream)), () => {
-				setTimeout(() => speaker.close(), 600)
+				setTimeout(() => speaker.close(), 750)
 			})
 		})
 	})

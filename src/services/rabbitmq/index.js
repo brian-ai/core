@@ -4,39 +4,45 @@ import logger from 'hoopa-logger'
 const subscribeToChannel = (channelSubject, actionCallback) => {
 	logger.info('Connecting to rabbitmq queue...')
 
-	return amqp.connect('amqp://localhost:32772', (err, connection) => {
-		logger.info('Connection successfull!')
-		if (err) {
-			logger.error(`RabbitMQ | Connection error: ${err}`)
-		}
-
-		logger.info('Opening channel...')
-		connection.createChannel((error, channel) => {
-			if (error) {
-				logger.error(`RabbitMQ | Error creating channel: ${error}`)
+	return amqp.connect(
+		`amqp://${process.env.RABBIT_URL}:${process.env.RABBIT_PORT}`,
+		(err, connection) => {
+			if (err) {
+				logger.error(`RabbitMQ | Connection error: ${err}`)
 			}
 
-			logger.info('Channel opened!')
-			channel.assertExchange(channelSubject, 'fanout', { durable: false })
-			channel.assertQueue('', { exclusive: true }, (er, q) => {
-				if (er) {
-					logger.error(`RabbitMQ | Error assertQueue: ${error}`)
+			logger.info('Connection successfull!')
+
+			logger.info('Opening channel...')
+			connection.createChannel((error, channel) => {
+				if (error) {
+					logger.error(`RabbitMQ | Error creating channel: ${error}`)
 				}
 
-				channel.bindQueue(q.queue, channelSubject, '')
+				logger.info(`Suscribed to ${channelSubject}`)
+				channel.assertExchange(channelSubject, 'fanout', { durable: false })
+				channel.assertQueue('', { exclusive: true }, (er, q) => {
+					if (er) {
+						logger.error(`RabbitMQ | Error assertQueue: ${error}`)
+					}
 
-				channel.consume(
-					q.queue,
-					msg => {
-						logger.info(`Received: ${msg.content.toString()}`)
+					channel.bindQueue(q.queue, channelSubject, '')
 
-						actionCallback(msg)
-					},
-					{ noAck: true }
-				)
+					channel.consume(
+						q.queue,
+						msg => {
+							logger.info(
+								`${channelSubject} incoming message: ${msg.content.toString()}`
+							)
+
+							actionCallback(msg)
+						},
+						{ noAck: true }
+					)
+				})
 			})
-		})
-	})
+		}
+	)
 }
 
 export default {

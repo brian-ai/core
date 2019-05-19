@@ -1,7 +1,7 @@
 import logger from 'hoopa-logger'
 import { getWeatherInformation, giveWeatherAdvise } from './weather'
-import getGreetingTime from '../utils'
-import { getRouteToWork } from '../../../services'
+import getGreetingTime from '../../utils'
+import { getRouteToWork } from '../../../../services'
 
 const sayWorkRoute = ({ minutes, name, distance }) =>
 	`<p>You should get about of ${minutes} minutes to work by ${name}, the whole path is ${distance} kilometers</p>`

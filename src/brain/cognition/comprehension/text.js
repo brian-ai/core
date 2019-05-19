@@ -16,7 +16,10 @@ const phraseExtractor = sentence => Parallel.phraseExtractor(sentence)
 
 const textParser = sentence => Parallel.textParser(sentence)
 
-const classifySubjects = sentence => new NLP().classify(sentence)
+const classifySubjects = sentence => {
+	const { classify, LanguageProcessor } = NLP
+	classify(sentence, LanguageProcessor)
+}
 
 export {
 	extractKeywords,
