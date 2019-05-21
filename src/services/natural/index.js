@@ -28,8 +28,7 @@ const NLP = {
 	classify: (sentence, Bayes) => {
 		const classification = Bayes.classify(sentence)
 
-		if (!classification)
-			return "Sorry, but I don't understand what you've said."
+		if (!classification) return "Sorry, but I don't understand what you've said."
 
 		logger.info(`Sentence ${sentence} classified: --kind ${classification}`)
 

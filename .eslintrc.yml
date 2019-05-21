@@ -10,7 +10,7 @@ parserOptions:
   ecmaVersion: 2018
   sourceType: module
 rules: {
-  indent: [2, "tab"],
+  indent: [1, "tab"],
   "no-tabs": 0,
   semi: 0,
   treatUndefinedAsUnspecified: true,

@@ -31,9 +31,7 @@ const subscribeToChannel = (channelSubject, actionCallback) => {
 					channel.consume(
 						q.queue,
 						msg => {
-							logger.info(
-								`${channelSubject} incoming message: ${msg.content.toString()}`
-							)
+							logger.info(`${channelSubject} incoming message: ${msg.content.toString()}`)
 
 							actionCallback(msg)
 						},
@@ -45,6 +43,37 @@ const subscribeToChannel = (channelSubject, actionCallback) => {
 	)
 }
 
+const sendMessage = (channelSubject, message) => {
+	logger.info('Connecting to rabbitmq queue...')
+
+	return amqp.connect(
+		`amqp://${process.env.RABBIT_URL}:${process.env.RABBIT_PORT}`,
+		(err, connection) => {
+			if (err) {
+				return logger.error(`RabbitMQ | Connection error: ${err}`)
+			}
+			logger.info('Connection successfull!')
+
+			const content = Buffer.from(message)
+
+			logger.info('Opening channel...')
+
+			return connection.createChannel((error, channel) => {
+				if (error) {
+					return logger.error(`RabbitMQ | Error opening channel: ${error}`)
+				}
+
+				logger.info('Channel opened!')
+				channel.assertExchange(channelSubject, 'fanout', { durable: false })
+				channel.publish(channelSubject, '', content)
+
+				return logger.info(`${channelSubject} --message sent! --data: ${message}`)
+			})
+		}
+	)
+}
+
 export default {
-	subscribeToChannel
+	subscribeToChannel,
+	sendMessage
 }

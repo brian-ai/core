@@ -8,6 +8,27 @@ export default [
 		class: 'positive'
 	},
 	{
+		input: 'Play some Jazz',
+		class: 'song request'
+	},
+	{
+		input: 'Play Jazz',
+		class: 'song request'
+	},
+	{
+		input: 'Play some music',
+		class: 'song request'
+	},
+	{
+		input: 'Jazz',
+		class: 'music genre',
+		answer: 'Good choice'
+	},
+	{
+		input: 'I think it is a good movie',
+		class: 'positive'
+	},
+	{
 		input: 'It was good',
 		class: 'positive'
 	},
@@ -168,6 +189,11 @@ export default [
 		input: 'Hi, Brian',
 		class: 'greeting',
 		answer: 'I was talking with my uncle Jarvis! Sorry!'
+	},
+	{
+		input: 'Hey Brian',
+		class: 'greeting',
+		answer: 'Your virus definitions have been updated'
 	},
 	{
 		input: 'Hello, Brian',

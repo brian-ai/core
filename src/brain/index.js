@@ -1,15 +1,12 @@
 // Reactions to Queue(Stimulus)
-import {
-	playlistHandler,
-	conversationHandler,
-	weatherHandler
-} from './reactions/queue'
+import { playlistHandler, conversationHandler, weatherHandler } from './reactions/queue'
 // Knowledge
 import Memory from './memory'
 // Routines Controller
 import Routines from './routines'
 // Services
 import { RabbitMQ, player, NLP } from '../services'
+import HotwordDetector from './communication/listening'
 
 const Subscriber = (SYSTEM_DATA, LanguageProcessor) => {
 	const channels = [
@@ -19,7 +16,7 @@ const Subscriber = (SYSTEM_DATA, LanguageProcessor) => {
 		},
 		{
 			channel: 'conversation_service',
-			callback: msg => conversationHandler(msg, LanguageProcessor)
+			callback: msg => conversationHandler(msg, LanguageProcessor, player)
 		},
 		{
 			channel: 'weather_service',
@@ -27,9 +24,7 @@ const Subscriber = (SYSTEM_DATA, LanguageProcessor) => {
 		}
 	]
 
-	return channels.map(({ channel, callback }) =>
-		RabbitMQ.subscribeToChannel(channel, callback)
-	)
+	return channels.map(({ channel, callback }) => RabbitMQ.subscribeToChannel(channel, callback))
 }
 
 const init = async () => {
@@ -38,6 +33,8 @@ const init = async () => {
 	NLP.trainModel(null, Bayes, LanguageProcessor)
 	Subscriber(SYSTEM_DATA, LanguageProcessor)
 	Routines(player)
+
+	HotwordDetector()
 }
 
 init()

@@ -13,8 +13,7 @@ const loadBrianfy = (access, refresh) => {
 }
 
 /**
- * Write spotify tokens based on the spotify
- * authorization flow
+ * Handle spotify authorization flow
  */
 const authorize = () => {
 	logger.info('Authorizing spotify...')
@@ -69,7 +68,11 @@ const setVoiceVolume = async (amount = 30, instance) => {
 
 	logger.info(`Setting volume to: ${amount}`)
 
-	return newInstance.setVolume(amount)
+	try {
+		newInstance.setVolume(amount)
+	} catch (error) {
+		logger.error(`Spotify control service | volume error ${error}`)
+	}
 }
 
 /**

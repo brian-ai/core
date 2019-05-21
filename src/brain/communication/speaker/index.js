@@ -14,7 +14,7 @@ const createSentence = sentence => ({
 	VoiceId: 'Brian'
 })
 
-const speak = phrase =>
+const speak = (phrase, player) =>
 	new Promise((resolve, reject) => {
 		Polly.synthesizeSpeech(createSentence(phrase), (err, res) => {
 			if (err || !(res.AudioStream instanceof Buffer)) {
@@ -27,17 +27,27 @@ const speak = phrase =>
 			})
 
 			speaker.on('open', () => {
+				if (player) {
+					player.controls.setVoiceVolume(50)
+				}
 				logger.info('Speaker opened')
 			})
 
 			speaker.on('close', () => {
+				if (player) {
+					player.controls.setVoiceVolume(100)
+				}
 				logger.info('Speaker closed')
 				resolve()
 			})
 
-			speaker.write(Buffer.from(new Uint8Array(res.AudioStream)), () => {
-				setTimeout(() => speaker.close(), 750)
-			})
+			try {
+				speaker.write(Buffer.from(res.AudioStream), () => {
+					setTimeout(() => speaker.close(), 800)
+				})
+			} catch (error) {
+				logger.error(`Error opening speaker: ${error}`)
+			}
 		})
 	})
 
