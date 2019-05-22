@@ -1,4 +1,5 @@
 import logger from 'hoopa-logger'
+import { ConversationContext } from 'node-nlp'
 import Speak from '../../communication'
 import IDontKnowThat from '../../cognition/comprehension'
 import processIntentType from '../../cognition/thinking'
@@ -50,16 +51,17 @@ const playlistHandler = async ({ player }, { content }) => {
 
 const conversationHandler = async ({ content }, LanguageProcessor, player) => {
 	logger.info(`Conversation control: received ${content}`)
+	const context = new ConversationContext()
 	const { data } = JSON.parse(content)
-
-	const { answer, classifications } = await LanguageProcessor.process('en', data)
+	const result = await LanguageProcessor.process('en', data, context)
+	const { answer, classifications } = result
 
 	const suggestedClassification = classifications.reduce((prev, curr) =>
 		Math.abs(curr.value - 1) < Math.abs(prev.value - 1) ? curr : prev
 	)
 	if (suggestedClassification) processIntentType(suggestedClassification, data)
 
-	if (!answer && !suggestedClassification) {
+	if (!answer || suggestedClassification === 'None') {
 		return IDontKnowThat(data, player)
 	}
 
@@ -72,7 +74,7 @@ const conversationHandler = async ({ content }, LanguageProcessor, player) => {
 				</speak>
 			`
 
-		return Speak(sentence, player)
+		return Speak(sentence)
 	}
 
 	return logger.error('Conversation handler service error')

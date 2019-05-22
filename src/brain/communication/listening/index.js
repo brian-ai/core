@@ -9,12 +9,12 @@ const models = new Models()
 // TODO: Improve model recognition with noise
 models.add({
 	file: `${__dirname}/models/Hey_Brian.pmdl`,
-	sensitivity: '0.5',
+	sensitivity: '.6',
 	hotwords: 'hey brian'
 })
 
 // TODO: Study detector configs with more effort
-const HotwordDetector = () => {
+const HotwordDetector = (restart = false) => {
 	const detector = new Detector({
 		resource: 'node_modules/snowboy/resources/common.res',
 		models,
@@ -22,58 +22,66 @@ const HotwordDetector = () => {
 		applyFrontend: true
 	})
 
-	detector.on('silence', () => {
-		// console.log('silence')
-	})
-
-	detector.on('sound', () => {
-		// Callback receives a <buffer>, which contains the last chunk of the audio that triggers the "sound"
-		// event. It could be written to a wav stream.
-		// logger.info('Hotword detector sound detected..')
-	})
-
 	detector.on('error', error => {
+		record.stop()
 		logger.error(`Horword detection error: --error ${error}`)
+
+		return HotwordDetector(true)
 	})
 
 	detector.on('hotword', async (index, hotword) => {
 		record.stop()
-		// Callback receives a <buffer>, which contains the last chunk of the audio that triggers the "hotword"
-		// event. It could be written to a wav stream. You will have to use it
-		// together with the <buffer> in the "sound" event if you want to get audio
-		// data after the hotword.
-		logger.info(`hotword_detection_service | hotword ${hotword} detected`)
+		logger.info(
+			`hotword_detection_service | hotword ${hotword} detected, stop recording`
+		)
 
-		const parseResult = (err, resp, body) => {
+		const requestConfig = {
+			url: process.env.WIT_URL,
+			headers: {
+				Accept: 'application/vnd.wit.20160202+json',
+				Authorization: `Bearer ${process.env.WIT_TOKEN}`,
+				'Content-Type': 'audio/wav'
+			}
+		}
+
+		/* eslint-disable no-underscore-dangle */
+		const parseResult = async (err, resp, body) => {
+			record.stop()
 			const transcription = JSON.parse(body)
+			logger.info(
+				`stt_service | Data analysis complete --transcription ${
+					transcription._text
+				}`
+			)
 
-			/* eslint-disable no-underscore-dangle */
-			return RabbitMQ.sendMessage(
+			RabbitMQ.sendMessage(
 				'conversation_service',
 				` { "data": "${transcription._text}" }`
 			)
+
+			setTimeout(() => HotwordDetector(true), 1000)
 		}
 
 		// TODO: Improve request to wit system :)
 		try {
-			const requestConfig = {
-				url: process.env.WIT_URL,
-				headers: {
-					Accept: 'application/vnd.wit.20160202+json',
-					Authorization: `Bearer ${process.env.WIT_TOKEN}`,
-					'Content-Type': 'audio/wav'
-				}
-			}
+			logger.info(`stt_service | analyzing voice data...`)
 
 			record.start().pipe(await request.post(requestConfig, parseResult))
 		} catch (error) {
 			logger.error(error)
 		}
-
-		return HotwordDetector()
 	})
 
+	if (restart) {
+		record.stop()
+	}
+
 	if (record) {
+		logger.info(
+			`hotword_detection_service | ${
+				restart ? 'Restarting' : 'initializing'
+			} recording...`
+		)
 		const mic = record.start({
 			threshold: 0,
 			verbose: false
@@ -81,6 +89,7 @@ const HotwordDetector = () => {
 
 		return mic.pipe(detector)
 	}
+
 	return logger.error('Error initializing hotword detection')
 }
 

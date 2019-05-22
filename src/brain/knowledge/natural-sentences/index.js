@@ -20,6 +20,26 @@ export default [
 		class: 'song request'
 	},
 	{
+		input: 'Play some hip hop',
+		class: 'song request'
+	},
+	{
+		input: 'Play hip hop',
+		class: 'song request'
+	},
+	{
+		input: 'Play some music',
+		class: 'song request'
+	},
+	{
+		input: 'Play some songs',
+		class: 'song request'
+	},
+	{
+		input: 'Play music',
+		class: 'song request'
+	},
+	{
 		input: 'Jazz',
 		class: 'music genre',
 		answer: 'Good choice'
@@ -161,55 +181,43 @@ export default [
 		class: 'search'
 	},
 	{
-		input: 'Hi, Brian',
+		input: 'Hello',
 		class: 'greeting',
 		answer: 'Hi There!'
 	},
 	{
-		input: 'Hi, brian! how are you?',
+		input: 'How are you?',
 		class: 'greeting',
-		answer: 'Hi muchacho'
+		answer: 'I am very fine, after all I am an AI'
+	},
+	{
+		input: 'Nevermind',
+		class: 'dismiss',
+		answer: 'See ya'
+	},
+	{
+		input: 'Cancel',
+		class: 'dismiss',
+		answer: 'I am here to help'
+	},
+	{
+		input: `What's up?`,
+		class: 'greeting',
+		answer: `Hello human`
 	},
 	{
 		input: 'Hi',
 		class: 'greeting',
-		answer: 'Hellooow there!'
+		answer: 'Sorry the late! I was talking with my uncle Jarvis!'
 	},
 	{
 		input: 'Hello',
 		class: 'greeting',
-		answer: 'I am here to help'
-	},
-	{
-		input: 'Hi, Brian',
-		class: 'greeting',
-		answer: `What's up?!`
-	},
-	{
-		input: 'Hi, Brian',
-		class: 'greeting',
-		answer: 'I was talking with my uncle Jarvis! Sorry!'
-	},
-	{
-		input: 'Hey Brian',
-		class: 'greeting',
 		answer: 'Your virus definitions have been updated'
 	},
 	{
-		input: 'Hello, Brian',
-		class: 'greeting',
-		answer: 'How can I help you?'
-	},
-	{
-		input: 'How are you?',
-		class: 'polite'
-	},
-	{
-		input: 'how are you?',
-		class: 'polite'
-	},
-	{
 		input: 'Are you, ok?',
-		class: 'polite'
+		class: 'greeeting',
+		answer: 'I do not see any errors on my logs'
 	}
 ]
