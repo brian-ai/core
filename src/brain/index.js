@@ -1,5 +1,9 @@
 // Reactions to Queue(Stimulus)
-import { playlistHandler, conversationHandler, weatherHandler } from './reactions/queue'
+import {
+	playlistHandler,
+	conversationHandler,
+	weatherHandler
+} from './reactions/queue'
 // Knowledge
 import Memory from './memory'
 // Routines Controller
@@ -13,22 +17,26 @@ const Subscriber = async (SYSTEM_DATA, LanguageProcessor, Brianfy) => {
 	const channels = [
 		{
 			channel: 'playlist_service',
-			callback: msg => playlistHandler({ player, instance: Brianfy, core: { SYSTEM_DATA } }, msg),
+			callback: msg =>
+				playlistHandler({ player, instance: Brianfy, core: { SYSTEM_DATA } }, msg)
 		},
 		{
 			channel: 'conversation_service',
-			callback: msg => conversationHandler(msg, LanguageProcessor, { player, instance: Brianfy }),
+			callback: msg =>
+				conversationHandler(msg, LanguageProcessor, { player, instance: Brianfy })
 		},
 		{
 			channel: 'weather_service',
-			callback: msg => weatherHandler(msg),
-		},
+			callback: msg => weatherHandler(msg)
+		}
 	]
 
-	return channels.map(({ channel, callback }) => RabbitMQ.subscribeToChannel(channel, callback))
+	return channels.map(({ channel, callback }) =>
+		RabbitMQ.subscribeToChannel(channel, callback)
+	)
 }
 
-const init = async () => {
+export const init = async () => {
 	const Brianfy = await player.instance.authorize()
 	const SYSTEM_DATA = await Memory.getSystemMemory()
 	const { LanguageProcessor, Bayes } = NLP
@@ -40,4 +48,4 @@ const init = async () => {
 	// HotwordDetector()
 }
 
-init()
+export default init

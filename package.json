@@ -51,11 +51,11 @@
 	},
 	"jest": {
 		"testURL": "http://localhost/",
-		"collectCoverageFrom": [
-			"!/node_modules/*"
-		],
 		"testPathIgnorePatterns": [
-			"<rootDir>/(build|docs|node_modules)/"
+			"/node_modules/"
+		],
+		"transformIgnorePatterns": [
+			"/node_modules/(?!rethinkly).+\\.js$"
 		]
 	},
 	"husky": {
