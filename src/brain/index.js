@@ -3,7 +3,7 @@ import {
 	playlistHandler,
 	conversationHandler,
 	weatherHandler
-} from './reactions/queue'
+} from './reactions/queue-channels'
 // Knowledge
 import Memory from './memory'
 // Routines Controller
