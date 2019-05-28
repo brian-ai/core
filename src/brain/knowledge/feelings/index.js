@@ -10,7 +10,7 @@ const activeNetwork = async (LSTM = false) => {
 		momentum: 0.1,
 		callback: null,
 		callbackPeriod: 10,
-		timeout: Infinity
+		timeout: Infinity,
 	})
 
 	return network

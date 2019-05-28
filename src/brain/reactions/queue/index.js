@@ -5,18 +5,11 @@ import IDontKnowThat from '../../cognition/comprehension'
 import processIntentType from '../../cognition/thinking'
 
 const playlistHandler = async ({ player, instance }, { content }) => {
-	const greeting = [
-		'Hi There!',
-		'Hi muchacho!',
-		'Hellooow there!',
-		`What's up?!`
-	]
+	const greeting = ['Hi There!', 'Hi muchacho!', 'Hellooow there!', `What's up?!`]
 
 	const playlistObject = JSON.parse(content)
 	const options =
-		typeof playlistObject.options === 'string'
-			? JSON.parse(playlistObject.options)
-			: playlistObject.options || {}
+		typeof playlistObject.options === 'string' ? JSON.parse(playlistObject.options) : playlistObject.options || {}
 	const playlists = await player.findPlaylists(playlistObject.data, instance)
 	const results = playlists.length
 	const { data } = playlistObject
@@ -63,7 +56,6 @@ const conversationHandler = async ({ content }, LanguageProcessor) => {
 	return logger.error('Conversation handler service error')
 }
 
-const weatherHandler = ({ content }) =>
-	logger.info(`Weather control: received ${content}`)
+const weatherHandler = ({ content }) => logger.info(`Weather control: received ${content}`)
 
 export { playlistHandler, conversationHandler, weatherHandler }

@@ -13,7 +13,7 @@ const getGreetingTime = () => {
 
 	return {
 		humanizedTime,
-		sentence: `<amazon:auto-breaths>Good ${humanizedTime} sir!!!`
+		sentence: `<amazon:auto-breaths>Good ${humanizedTime} sir!!!`,
 	}
 }
 

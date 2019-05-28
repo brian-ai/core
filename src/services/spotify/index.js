@@ -21,12 +21,8 @@ const authorize = () => {
 	auth.config({
 		clientId: process.env.SPOTIFY_CLIENT_ID,
 		clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-		scope: [
-			'user-read-playback-state',
-			'user-modify-playback-state',
-			'user-top-read'
-		],
-		path: './tokens'
+		scope: ['user-read-playback-state', 'user-modify-playback-state', 'user-top-read'],
+		path: './tokens',
 	})
 
 	return new Promise((resolve, reject) => {
@@ -120,7 +116,7 @@ const startPlaylist = async (playlist, instance) => {
 		logger.info(`${playlist.name} started`)
 
 		newInstance.play({
-			context_uri: playlist.uri
+			context_uri: playlist.uri,
 		})
 	} catch (error) {
 		return logger.error(error)
@@ -134,12 +130,8 @@ const startPlaylist = async (playlist, instance) => {
  * @returns spotifyApi
  */
 const Brianfy = async SYSTEM_DATA => {
-	const spotifyID = SYSTEM_DATA.providers.find(
-		providerObj => providerObj.slug === 'spotify'
-	).id
-	const spotifyToken = SYSTEM_DATA.tokens.find(
-		tokenObj => tokenObj.provider === spotifyID
-	)
+	const spotifyID = SYSTEM_DATA.providers.find(providerObj => providerObj.slug === 'spotify').id
+	const spotifyToken = SYSTEM_DATA.tokens.find(tokenObj => tokenObj.provider === spotifyID)
 	const spotifyApi = !(spotifyToken && spotifyToken.access)
 		? await authorize()
 		: loadBrianfy(spotifyToken.access, spotifyToken.refresh)

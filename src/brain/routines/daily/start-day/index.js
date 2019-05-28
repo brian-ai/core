@@ -19,15 +19,12 @@ const startDay = async () => {
 
 	const minutes = +timePieces[0] * 60 + +timePieces[1]
 	const greetingObject = getGreetingTime()
-	const weatherAdvise = giveWeatherAdvise(
-		temperature,
-		greetingObject.humanizedTime
-	)
+	const weatherAdvise = giveWeatherAdvise(temperature, greetingObject.humanizedTime)
 	const isWeekend = new Date().getDay() % 6 === 0
 	const route = {
 		minutes,
 		name,
-		distance
+		distance,
 	}
 
 	logger.info('Loaded daily information...')

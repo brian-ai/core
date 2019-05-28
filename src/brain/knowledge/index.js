@@ -6,7 +6,7 @@ const getInstance = () => {
 	const dbConfig = {
 		host: process.env.RETHINKDB_URL,
 		port: process.env.RETHINKDB_PORT,
-		db: process.env.DB_NAME
+		db: process.env.DB_NAME,
 	}
 
 	return rethinkly(dbConfig)
@@ -15,7 +15,7 @@ const getInstance = () => {
 const baseKnowledge = {
 	feelings,
 	natural: NaturalElements,
-	instance: { getInstance, retrieveData }
+	instance: { getInstance, retrieveData },
 }
 
 export default baseKnowledge

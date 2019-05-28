@@ -4,33 +4,33 @@ export default [
 			{
 				text: 'Find',
 				Dependency: 'root',
-				Tags: 'verb'
+				Tags: 'verb',
 			},
 			{
 				text: 'a',
 				Dependency: 'determiner',
-				Tags: 'determiner'
+				Tags: 'determiner',
 			},
 			{
 				text: 'table',
 				Dependency: 'direct object',
-				Tags: 'noun'
+				Tags: 'noun',
 			},
 			{
 				text: 'near',
 				Dependency: 'prepositional modifier',
-				Tags: 'preposition or conjunction'
+				Tags: 'preposition or conjunction',
 			},
 			{
 				text: 'the',
 				Dependency: 'determiner',
-				Tags: 'determiner'
+				Tags: 'determiner',
 			},
 			{
 				text: 'sea',
 				Dependency: 'object of a preposition',
-				Tags: 'noun'
-			}
-		]
-	}
+				Tags: 'noun',
+			},
+		],
+	},
 ]

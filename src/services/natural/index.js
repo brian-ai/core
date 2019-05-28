@@ -33,7 +33,7 @@ const NLP = {
 		logger.info(`Sentence ${sentence} classified: --kind ${classification}`)
 
 		return classification
-	}
+	},
 }
 
 export default NLP

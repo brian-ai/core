@@ -6,11 +6,7 @@ import startDay from './start-day'
 // Helpers
 import Scheduler from '../helpers'
 
-export default async (
-	cronTime = '00 30 5 * * 1-5',
-	jobName,
-	{ player, instance }
-) => {
+export default async (cronTime = '00 30 5 * * 1-5', jobName, { player, instance }) => {
 	Scheduler(cronTime, 'Daily Job', async () => {
 		/*
 		 * Runs every week days
@@ -34,9 +30,7 @@ export default async (
 				`,
 					{ player, instance }
 				)
-					.then(() =>
-						player.controls.startPlaylist(playlists[playlistNumber], instance)
-					)
+					.then(() => player.controls.startPlaylist(playlists[playlistNumber], instance))
 					.catch(err => logger.error(err))
 			})
 			.catch(err => logger.error(err))

@@ -4,7 +4,7 @@ import logger from 'hoopa-logger'
 
 const Polly = new AWS.Polly({
 	signatureVersion: 'v4',
-	region: 'us-east-1'
+	region: 'us-east-1',
 })
 
 const createSentence = sentence => {
@@ -22,7 +22,7 @@ const createSentence = sentence => {
 		Text,
 		OutputFormat: 'pcm',
 		TextType: 'ssml',
-		VoiceId: 'Brian'
+		VoiceId: 'Brian',
 	}
 }
 
@@ -35,7 +35,7 @@ const speak = phrase =>
 			const speaker = new Speaker({
 				channels: 1,
 				bitDepth: 16,
-				sampleRate: 17650
+				sampleRate: 17650,
 			})
 
 			speaker.on('open', () => {

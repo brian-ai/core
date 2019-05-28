@@ -10,7 +10,7 @@ const models = new Models()
 models.add({
 	file: `${__dirname}/models/Hey_Brian.pmdl`,
 	sensitivity: '.6',
-	hotwords: 'hey brian'
+	hotwords: 'hey brian',
 })
 
 // TODO: Study detector configs with more effort
@@ -19,7 +19,7 @@ const HotwordDetector = (restart = false) => {
 		resource: 'node_modules/snowboy/resources/common.res',
 		models,
 		audioGain: 0.5,
-		applyFrontend: true
+		applyFrontend: true,
 	})
 
 	detector.on('error', error => {
@@ -31,33 +31,24 @@ const HotwordDetector = (restart = false) => {
 
 	detector.on('hotword', async (index, hotword) => {
 		record.stop()
-		logger.info(
-			`hotword_detection_service | hotword ${hotword} detected, stop recording`
-		)
+		logger.info(`hotword_detection_service | hotword ${hotword} detected, stop recording`)
 
 		const requestConfig = {
 			url: process.env.WIT_URL,
 			headers: {
 				Accept: 'application/vnd.wit.20160202+json',
 				Authorization: `Bearer ${process.env.WIT_TOKEN}`,
-				'Content-Type': 'audio/wav'
-			}
+				'Content-Type': 'audio/wav',
+			},
 		}
 
 		/* eslint-disable no-underscore-dangle */
 		const parseResult = async (err, resp, body) => {
 			record.stop()
 			const transcription = JSON.parse(body)
-			logger.info(
-				`stt_service | Data analysis complete --transcription ${
-					transcription._text
-				}`
-			)
+			logger.info(`stt_service | Data analysis complete --transcription ${transcription._text}`)
 
-			RabbitMQ.sendMessage(
-				'conversation_service',
-				` { "data": "${transcription._text}" }`
-			)
+			RabbitMQ.sendMessage('conversation_service', ` { "data": "${transcription._text}" }`)
 
 			setTimeout(() => HotwordDetector(true), 1000)
 		}
@@ -77,14 +68,10 @@ const HotwordDetector = (restart = false) => {
 	}
 
 	if (record) {
-		logger.info(
-			`hotword_detection_service | ${
-				restart ? 'Restarting' : 'initializing'
-			} recording...`
-		)
+		logger.info(`hotword_detection_service | ${restart ? 'Restarting' : 'initializing'} recording...`)
 		const mic = record.start({
 			threshold: 0,
-			verbose: false
+			verbose: false,
 		})
 
 		return mic.pipe(detector)

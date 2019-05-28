@@ -8,7 +8,7 @@ const getRouteToWork = (a, b) => {
 		.route({
 			locations: ['-23.561365, -46.687630', '-23.560023, -46.687979'],
 			maxRoutes: 2,
-			timeOverage: 99
+			timeOverage: 99,
 		})
 		.then(function(results) {
 			const { distance, formattedTime, name } = results.properties
@@ -17,7 +17,7 @@ const getRouteToWork = (a, b) => {
 			return {
 				distance,
 				formattedTime,
-				name
+				name,
 			}
 		})
 }

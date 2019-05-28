@@ -1,22 +1,17 @@
 import NLP from './natural'
 import getRouteToWork from './location'
-import {
-	findPlaylists,
-	authorize,
-	setVoiceVolume,
-	startPlaylist
-} from './spotify'
+import { findPlaylists, authorize, setVoiceVolume, startPlaylist } from './spotify'
 import RabbitMQ from './rabbitmq'
 
 const player = {
 	instance: {
-		authorize
+		authorize,
 	},
 	controls: {
 		setVoiceVolume,
-		startPlaylist
+		startPlaylist,
 	},
-	findPlaylists
+	findPlaylists,
 }
 
 export { RabbitMQ, NLP, getRouteToWork, player }
