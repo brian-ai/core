@@ -1,4 +1,5 @@
 import * as serializer from './serializer'
+import safeEmpty from './safeEmpty'
 
 const calculateTimeDiference = (dt2, dt1) => {
 	let diff = (dt2.getTime() - dt1.getTime()) / 1000
@@ -7,4 +8,4 @@ const calculateTimeDiference = (dt2, dt1) => {
 	return Math.abs(Math.round(diff))
 }
 
-export { serializer, calculateTimeDiference }
+export { safeEmpty, serializer, calculateTimeDiference }

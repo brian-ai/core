@@ -4,7 +4,7 @@ import Speak from '../../communication'
 import IDontKnowThat from '../../cognition/comprehension'
 import processIntentType from '../../cognition/thinking'
 
-const playlistHandler = async ({ player }, { content }) => {
+const playlistHandler = async ({ player, instance }, { content }) => {
 	const greeting = [
 		'Hi There!',
 		'Hi muchacho!',
@@ -17,39 +17,32 @@ const playlistHandler = async ({ player }, { content }) => {
 		typeof playlistObject.options === 'string'
 			? JSON.parse(playlistObject.options)
 			: playlistObject.options || {}
-	const playlists = await player.findPlaylists(playlistObject.data)
+	const playlists = await player.findPlaylists(playlistObject.data, instance)
 	const results = playlists.length
 	const { data } = playlistObject
 
-	const sentence = `
-		<speak>
-			<amazon:effect vocal-tract-length="+5%">
-				<amazon:auto-breaths>
-					${greeting[Math.floor(Math.random() * greeting.length)]}
-					I've found ${results} playlists related to ${data}
-				</amazon:auto-breaths>
-			</amazon:effect>
-		</speak>
-	`
-	await Speak(sentence, player)
+	const sentence = `${
+		greeting[Math.floor(Math.random() * greeting.length)]
+	} I've found ${results} playlists related to ${data}`
+
+	await player.controls.setVoiceVolume(50, instance)
+	await Speak(sentence)
 
 	logger.info(`Playlist service | ${data} | results: ${results}`)
 
 	if (options.play) {
-		const playSentence = `
-	        <speak>
-	            <amazon:effect vocal-tract-length="+5%">
-	                <amazon:auto-breaths>Now playing ${data} songs...</amazon:auto-breaths>
-	            </amazon:effect>
-	        </speak>
-	    `
-		await Speak(playSentence, player)
+		const playSentence = `Now playing ${data} songs..`
 
-		await player.controls.startPlaylist(playlists[0])
+		await Speak(playSentence)
+		await player.controls.startPlaylist(playlists[0], instance)
+
+		return player.controls.setVoiceVolume(100, instance)
 	}
+
+	return logger.info(`Playlist service | end`)
 }
 
-const conversationHandler = async ({ content }, LanguageProcessor, player) => {
+const conversationHandler = async ({ content }, LanguageProcessor) => {
 	logger.info(`Conversation control: received ${content}`)
 	const context = new ConversationContext()
 	const { data } = JSON.parse(content)
@@ -62,20 +55,10 @@ const conversationHandler = async ({ content }, LanguageProcessor, player) => {
 	if (suggestedClassification) processIntentType(suggestedClassification, data)
 
 	if (!answer || suggestedClassification === 'None') {
-		return IDontKnowThat(data, player)
+		return IDontKnowThat(data)
 	}
 
-	if (answer) {
-		const sentence = `
-				<speak>
-					<amazon:effect vocal-tract-length="+5%">
-						<amazon:auto-breaths>${answer}</amazon:auto-breaths>
-					</amazon:effect>
-				</speak>
-			`
-
-		return Speak(sentence)
-	}
+	if (answer) return Speak(answer)
 
 	return logger.error('Conversation handler service error')
 }

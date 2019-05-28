@@ -5,4 +5,4 @@ const classifySubjects = sentence => {
 	classify(sentence, LanguageProcessor)
 }
 
-export { classifySubjects }
+export default classifySubjects

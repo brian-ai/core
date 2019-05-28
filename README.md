@@ -2,7 +2,7 @@
 
 :construction: [Work in Progress] :construction:
 
-[![wercker status](https://app.wercker.com/status/f1efa13b6eefcdb923fa4762d53e5dae/s/master "wercker status")](https://app.wercker.com/project/byKey/f1efa13b6eefcdb923fa4762d53e5dae) [![Maintainability](https://api.codeclimate.com/v1/badges/2fa360d0b0c14db8ba9e/maintainability)](https://codeclimate.com/github/clucasalcantara/brian/maintainability)
+[![wercker status](https://app.wercker.com/status/f1efa13b6eefcdb923fa4762d53e5dae/s/master 'wercker status')](https://app.wercker.com/project/byKey/f1efa13b6eefcdb923fa4762d53e5dae) [![Maintainability](https://api.codeclimate.com/v1/badges/2fa360d0b0c14db8ba9e/maintainability)](https://codeclimate.com/github/clucasalcantara/brian/maintainability)
 
 ## Purpose
 
@@ -25,6 +25,7 @@ $ sudo apt-get install libasound2-dev
 ```
 
 ## Tech stack:
+
 - node-nlp
 - AWS Polly
 - RethinkDB
@@ -37,7 +38,6 @@ $ sudo apt-get install libasound2-dev
 - rethinkly
 - weather-js
 - rabbitmq
-
 
 ## Features breakdown
 
@@ -69,23 +69,25 @@ NOTE: It's possible to run brian for almost any device running Node JS with audi
 # Integrations
 
 As mentioned Brian is connected to a few services to charge his powers, they are described below:
+
 - [MapQuest](https://www.mapquest.com/) to routes and traffic information
 - Spotify for music control and home ambientantion
 - WIT.ai for Speech recognition
 - AWS Polly for Voice synthetizing
 
 # Instalation
+
 1. Clone and install dependencies
-    ```sh
-    $ git clone git@github.com:brian-ai/core.git
-    $ cd core && yarn
-    ``` 
+   ```sh
+   $ git clone git@github.com:brian-ai/core.git
+   $ cd core && yarn
+   ```
 2. Copy the sample env file to configure services
-    ```sh
-    $ cp .sample-env .env
-    ``` 
+   ```sh
+   $ cp .sample-env .env
+   ```
 3. Add all API keys and secrets to the env file
 4. Run the execution command:
-    ```sh
-    $ yarn call:brian
-    ```
+   ```sh
+   $ yarn call:brian
+   ```

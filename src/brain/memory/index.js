@@ -1,7 +1,8 @@
 import logger from 'hoopa-logger'
 import baseKnowledge from '../knowledge'
+import { safeEmpty } from '../utils'
 
-const getShred = async (table, label) => {
+const getMemoryShred = async (table, label) => {
 	const data = await baseKnowledge.instance.retrieveData(
 		await baseKnowledge.instance.getInstance(),
 		table
@@ -12,19 +13,19 @@ const getShred = async (table, label) => {
 	return data
 }
 
-const isEmpty = (kind, defaultValue) => {
-	logger.warning(`Property is empty ${kind}`)
-
-	return defaultValue
-}
-
 const Memory = {
 	getSystemMemory: async () => {
-		const config = (await getShred('config', 'Config')) || isEmpty('config', {})
-		const roles = (await getShred('roles', 'Roles')) || isEmpty('roles', [])
-		const people = (await getShred('people', 'People')) || isEmpty('people', [])
-		const providers = (await getShred('providers', 'Providers')) || isEmpty('providers', [])
-		const tokens = (await getShred('tokens', 'Tokens')) || isEmpty('tokens', [])
+		const config =
+			(await getMemoryShred('config', 'Config')) || safeEmpty('config', {})
+		const roles =
+			(await getMemoryShred('roles', 'Roles')) || safeEmpty('roles', [])
+		const people =
+			(await getMemoryShred('people', 'People')) || safeEmpty('people', [])
+		const providers =
+			(await getMemoryShred('providers', 'Providers')) ||
+			safeEmpty('providers', [])
+		const tokens =
+			(await getMemoryShred('tokens', 'Tokens')) || safeEmpty('tokens', [])
 
 		logger.info('System main memory loaded')
 

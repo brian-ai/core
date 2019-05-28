@@ -7,14 +7,26 @@ const Polly = new AWS.Polly({
 	region: 'us-east-1'
 })
 
-const createSentence = sentence => ({
-	Text: sentence,
-	OutputFormat: 'pcm',
-	TextType: 'ssml',
-	VoiceId: 'Brian'
-})
+const createSentence = sentence => {
+	const Text = `
+		<speak>
+			<amazon:effect vocal-tract-length="+5%">
+				<amazon:auto-breaths>
+					${sentence}
+				</amazon:auto-breaths>
+			</amazon:effect>
+		</speak>
+	`
 
-const speak = (phrase, player) =>
+	return {
+		Text,
+		OutputFormat: 'pcm',
+		TextType: 'ssml',
+		VoiceId: 'Brian'
+	}
+}
+
+const speak = phrase =>
 	new Promise((resolve, reject) => {
 		Polly.synthesizeSpeech(createSentence(phrase), (err, res) => {
 			if (err || !(res.AudioStream instanceof Buffer)) {
@@ -27,23 +39,17 @@ const speak = (phrase, player) =>
 			})
 
 			speaker.on('open', () => {
-				if (player) {
-					player.controls.setVoiceVolume(50)
-				}
 				logger.info('Speaker opened')
 			})
 
 			speaker.on('close', () => {
-				if (player) {
-					player.controls.setVoiceVolume(100)
-				}
 				logger.info('Speaker closed')
 				resolve()
 			})
 
 			try {
 				speaker.write(Buffer.from(res.AudioStream), () => {
-					setTimeout(() => speaker.close(), 800)
+					setTimeout(() => speaker.close(), 700)
 				})
 			} catch (error) {
 				logger.error(`Error opening speaker: ${error}`)

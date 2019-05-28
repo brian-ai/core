@@ -2,9 +2,9 @@ import SpotifyWebApi from 'spotify-web-api-node'
 import auth from 'spotify-personal-auth'
 import logger from 'hoopa-logger'
 // Speaker Wrapper
-import Voice from '../../brain/communication'
+import Speak from '../../brain/communication'
 
-const loadBrianfy = (access, refresh) => {
+const loadBrianfy = async (access, refresh) => {
 	const Brianfy = new SpotifyWebApi()
 	Brianfy.setAccessToken(access)
 	Brianfy.setRefreshToken(refresh)
@@ -46,14 +46,11 @@ const authorize = () => {
 			.catch(err => {
 				logger.info(err.message)
 
-				return Voice.speak(
-					`<speak>
-						<amazon:auto-breaths>
-							Excuse me, Sir! But something went wrong when retrieving an access token from spotify! <break time="0.2s"/>
-							You should teach me how to code so I could fix that for you <break time="0.2s"/>
-							I'm pretty  sure that the problem is ${err.message}
-						</amazon:auto-breaths>
-					</speak>`
+				return Speak(
+					`Excuse me, Sir! But something went wrong when retrieving an access token from spotify! <break time="0.2s"/>
+					You should teach me how to code so I could fix that for you <break time="0.2s"/>
+					I'm pretty  sure that the problem is ${err.message}
+				`
 				)
 			})
 	})
@@ -129,7 +126,7 @@ const startPlaylist = async (playlist, instance) => {
 		return logger.error(error)
 	}
 
-	return setVoiceVolume(100)
+	return setVoiceVolume(100, newInstance)
 }
 
 /**

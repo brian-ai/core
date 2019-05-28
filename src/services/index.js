@@ -1,14 +1,17 @@
 import NLP from './natural'
 import getRouteToWork from './location'
-import Brianfy, {
+import {
 	findPlaylists,
+	authorize,
 	setVoiceVolume,
 	startPlaylist
 } from './spotify'
 import RabbitMQ from './rabbitmq'
 
 const player = {
-	Brianfy,
+	instance: {
+		authorize
+	},
 	controls: {
 		setVoiceVolume,
 		startPlaylist

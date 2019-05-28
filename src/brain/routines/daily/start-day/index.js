@@ -19,7 +19,10 @@ const startDay = async () => {
 
 	const minutes = +timePieces[0] * 60 + +timePieces[1]
 	const greetingObject = getGreetingTime()
-	const weatherAdvise = giveWeatherAdvise(temperature, greetingObject.humanizedTime)
+	const weatherAdvise = giveWeatherAdvise(
+		temperature,
+		greetingObject.humanizedTime
+	)
 	const isWeekend = new Date().getDay() % 6 === 0
 	const route = {
 		minutes,
@@ -30,17 +33,12 @@ const startDay = async () => {
 	logger.info('Loaded daily information...')
 
 	return `
-    <speak>
-      <amazon:effect vocal-tract-length="+5%">
-        ${greetingObject.sentence}!
-        <break time="200ms"/> Now it's ${temperature} degrees and it's ${skytext}, ${weatherAdvise}}.
-        <p>Have a lovely ${greetingObject.humanizedTime}!</p>
-        <break time="200ms"/>
-        ${!isWeekend ? sayWorkRoute(route) : ''}
-        
-        </amazon:auto-breaths>
-      </amazon:effect>
-    </speak>`
+		${greetingObject.sentence}!
+		<break time="200ms"/> Now it's ${temperature} degrees and it's ${skytext}, ${weatherAdvise}}.
+		<p>Have a lovely ${greetingObject.humanizedTime}!</p>
+		<break time="200ms"/>
+		${!isWeekend ? sayWorkRoute(route) : ''}
+	`
 }
 
 export default startDay
