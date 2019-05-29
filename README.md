@@ -2,7 +2,7 @@
 
 :construction: [Work in Progress] :construction:
 
-[![wercker status](https://app.wercker.com/status/f1efa13b6eefcdb923fa4762d53e5dae/s/master 'wercker status')](https://app.wercker.com/project/byKey/f1efa13b6eefcdb923fa4762d53e5dae) [![Maintainability](https://api.codeclimate.com/v1/badges/2fa360d0b0c14db8ba9e/maintainability)](https://codeclimate.com/github/clucasalcantara/brian/maintainability)
+[![wercker status](https://app.wercker.com/status/f1efa13b6eefcdb923fa4762d53e5dae/s/master 'wercker status')](https://app.wercker.com/project/byKey/f1efa13b6eefcdb923fa4762d53e5dae)
 
 ## Purpose
 
