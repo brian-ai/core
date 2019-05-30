@@ -55,7 +55,7 @@ const speak = phrase =>
 
 			try {
 				speaker.write(Buffer.from(res.AudioStream), () => {
-					setTimeout(() => speaker.close(), 700)
+					setTimeout(() => speaker.close(), 800)
 				})
 			} catch (error) {
 				logger.error(`Error opening speaker: ${error}`)

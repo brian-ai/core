@@ -5,9 +5,13 @@ const processIntentType = ({ label: intentType }, text) => {
 
 	switch (intentType) {
 		case 'song request': {
-			return RabbitMQ.sendMessage('playlist_service', `{ "data": "${text}", "options": { "play": true } }`)
+			return RabbitMQ.sendMessage(
+				'playlist_service',
+				`{ "data": "${text}", "options": { "play": true } }`
+			)
 		}
 		default:
+			console.log(intentType)
 			break
 	}
 

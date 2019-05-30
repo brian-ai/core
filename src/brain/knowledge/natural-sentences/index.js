@@ -210,6 +210,21 @@ export default [
 		answer: 'Hello sir!'
 	},
 	{
+		input: 'Hello, brian',
+		class: 'greeting',
+		answer: 'Hello sir!'
+	},
+	{
+		input: 'Hello, brian',
+		class: 'greeting',
+		answer: 'Hi sir!'
+	},
+	{
+		input: 'Hello, brian',
+		class: 'greeting',
+		answer: 'I am here'
+	},
+	{
 		input: 'Hello',
 		class: 'greeting',
 		answer:
