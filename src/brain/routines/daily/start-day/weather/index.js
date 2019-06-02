@@ -1,13 +1,19 @@
-import weather from 'weather-js'
-import giveWeatherAdvise from './utils'
+import DarkSky from 'dark-sky'
 
-const getWeatherInformation = (location = 'São Paulo, SP', degreeType = 'C') =>
-	new Promise((resolve, reject) => {
-		weather.find({ search: location, degreeType }, (err, result) => {
-			if (err) reject(err)
+const getWeatherInformation = async (location = [39.193, -188.134]) => {
+	const DarkSkyAPI = new DarkSky(process.env.DARKSKY_API)
 
-			if (result) resolve(result[0].current)
-		})
+	return DarkSkyAPI.options({
+		latitude: location[0],
+		longitude: location[1],
+		units: 'si',
+		language: 'en'
 	})
+		.get()
+		.then(({ currently, daily }) => ({
+			getTemperature: () => currently.temperature,
+			getSmartInfo: () => daily.summary
+		}))
+}
 
-export { getWeatherInformation, giveWeatherAdvise }
+export default getWeatherInformation

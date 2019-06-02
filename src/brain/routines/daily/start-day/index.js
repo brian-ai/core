@@ -1,10 +1,11 @@
 import logger from 'hoopa-logger'
-import { getWeatherInformation, giveWeatherAdvise } from './weather'
+import publicIp from 'public-ip'
+import geoip from 'geoip-lite'
+// Helpers
+import getWeatherInformation from './weather'
 import getGreetingTime from '../../utils'
-import { getRouteToWork } from '../../../../services'
-
-const sayWorkRoute = ({ minutes, name, distance }) =>
-	`<p>You should get about of ${minutes} minutes to work by ${name}, the whole path is ${distance} kilometers</p>`
+// Capabilities
+import Speak from '../../../communication'
 /**
  * startDay
  * @memberof routines
@@ -12,30 +13,27 @@ const sayWorkRoute = ({ minutes, name, distance }) =>
  * provide useful information as first interaction with Brian,
  */
 const startDay = async () => {
-	const { temperature, skytext } = await getWeatherInformation()
-	const trafficInformation = await getRouteToWork()
-	const { distance, name, formattedTime } = trafficInformation
-	const timePieces = formattedTime.split(':')
-
-	const minutes = +timePieces[0] * 60 + +timePieces[1]
+	const currentIP = await publicIp.v4()
+	const location = await geoip.lookup(currentIP)
+	const weatherInformation = await getWeatherInformation(location.ll)
+	const temperature = weatherInformation.getTemperature()
+	const smartWeatherInfo = weatherInformation.getSmartInfo()
 	const greetingObject = getGreetingTime()
-	const weatherAdvise = giveWeatherAdvise(temperature, greetingObject.humanizedTime)
-	const isWeekend = new Date().getDay() % 6 === 0
-	const route = {
-		minutes,
-		name,
-		distance,
-	}
+	const now = new Date()
+	const timeOptions = { hour: '2-digit', minute: '2-digit' }
+	const humanizedNow = now.toLocaleTimeString('en-US', { ...timeOptions })
+	const weekday = now.toLocaleDateString('en-US', { weekday: 'long' })
 
-	logger.info('Loaded daily information...')
+	logger.info('Daily useful information loaded!')
 
-	return `
-		${greetingObject.sentence}!
-		<break time="200ms"/> Now it's ${temperature} degrees and it's ${skytext}, ${weatherAdvise}}.
-		<p>Have a lovely ${greetingObject.humanizedTime}!</p>
+	return Speak(`
+		<p>${greetingObject.sentence}!</p>
+		<p>It's ${humanizedNow} and the weather in ${location.city} is 
+		${Math.round(temperature)}°C with ${smartWeatherInfo}</p>
+
+		<p>Have a lovely ${weekday}!</p>
 		<break time="200ms"/>
-		${!isWeekend ? sayWorkRoute(route) : ''}
-	`
+	`)
 }
 
 export default startDay
