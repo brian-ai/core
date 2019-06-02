@@ -10,8 +10,7 @@ import Memory from './memory'
 import Routines from './routines'
 // Services
 import { RabbitMQ, player, NLP } from '../services'
-
-// import HotwordDetector from './communication/listening'
+import HotwordDetector from './communication/listening'
 
 const Subscriber = async (SYSTEM_DATA, LanguageProcessor, Brianfy) => {
 	const channels = [
@@ -45,7 +44,7 @@ export const init = async () => {
 	Subscriber(SYSTEM_DATA, LanguageProcessor, Brianfy)
 	Routines(player, Brianfy)
 
-	// HotwordDetector()
+	HotwordDetector()
 }
 
 export default init
