@@ -34,6 +34,7 @@ const conversationHandler = async ({ content }, LanguageProcessor) => {
 		const dialogflowResponse = await DialogflowAgent.processSentence(sentence)
 
 		if (dialogflowResponse) {
+			console.log(dialogflowResponse)
 			return Speak(dialogflowResponse.fulfillmentText)
 		}
 	}
