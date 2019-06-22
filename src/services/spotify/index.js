@@ -1,5 +1,6 @@
 import SpotifyWebApi from 'spotify-web-api-node'
 import auth from 'spotify-personal-auth'
+import maxBy from 'lodash.maxby'
 import logger from 'hoopa-logger'
 // Speaker Wrapper
 import Speak from '../../brain/communication'
@@ -21,8 +22,12 @@ const authorize = () => {
 	auth.config({
 		clientId: process.env.SPOTIFY_CLIENT_ID,
 		clientSecret: process.env.SPOTIFY_CLIENT_SECRET,
-		scope: ['user-read-playback-state', 'user-modify-playback-state', 'user-top-read'],
-		path: './tokens',
+		scope: [
+			'user-read-playback-state',
+			'user-modify-playback-state',
+			'user-top-read'
+		],
+		path: './tokens'
 	})
 
 	return new Promise((resolve, reject) => {
@@ -99,28 +104,82 @@ const findPlaylists = async (musicGenre = 'Jazz', instance) => {
 	})
 }
 
+const analyzePopularity = items =>
+	Math.max(
+		...items.map(o => {
+			return o.popularity
+		})
+	)
+
 /**
- * Start a playlist into a desired player
+ * Search for playlists into spotify library
  * @param {Brianfy} instance
- * @param {Object} playlist
+ * @returns {Array} Playlists
  */
-const startPlaylist = async (playlist, instance) => {
+const smartSearch = async (query = 'Cooking Jazz', instance) => {
 	let newInstance = instance
 	if (!instance) {
 		newInstance = await authorize()
 		logger.info('Getting spotify credentials')
 	}
-	await setVoiceVolume(50, newInstance)
 
-	try {
-		logger.info(`${playlist.name} started`)
+	logger.info('Spotify Smart Search...')
 
-		newInstance.play({
-			context_uri: playlist.uri,
-		})
-	} catch (error) {
-		return logger.error(error)
+	return new Promise(async (resolve, reject) =>
+		newInstance.search(query, ['track', 'playlist']).then(
+			data => {
+				const searchResult = data.body
+				const playlists = searchResult.playlists.items
+				const tracks = searchResult.tracks.items
+				const tracksAveragePopularity = analyzePopularity(tracks)
+				const mostPopularTrack = maxBy(tracks, 'popularity')
+
+				if (
+					tracksAveragePopularity > 75 ||
+					mostPopularTrack.name.toLowerCase().includes(query)
+				) {
+					resolve({ data: tracks, type: 'tracks' })
+				}
+
+				resolve({ data: playlists, type: 'playlists' })
+			},
+			error => {
+				logger.error(error)
+
+				reject(error)
+			}
+		)
+	)
+}
+
+/**
+ * Start a playlist into a desired player
+ * @param {Brianfy} instance
+ * @param {Object} playlist
+ */
+const startPlaylist = async (playlist, instance, type = 'playlist') => {
+	let newInstance = instance
+	if (!instance) {
+		newInstance = await authorize()
+		logger.info('Getting spotify credentials')
 	}
+
+	let options = {
+		context_uri: playlist.uri
+	}
+	if (type === 'song') {
+		options = {
+			uris: [playlist.uri]
+		}
+	}
+
+	newInstance
+		.play({
+			...options
+		})
+		.catch(error => logger.error(error))
+
+	logger.info(`${playlist.name} started`)
 
 	return setVoiceVolume(100, newInstance)
 }
@@ -130,8 +189,12 @@ const startPlaylist = async (playlist, instance) => {
  * @returns spotifyApi
  */
 const Brianfy = async SYSTEM_DATA => {
-	const spotifyID = SYSTEM_DATA.providers.find(providerObj => providerObj.slug === 'spotify').id
-	const spotifyToken = SYSTEM_DATA.tokens.find(tokenObj => tokenObj.provider === spotifyID)
+	const spotifyID = SYSTEM_DATA.providers.find(
+		providerObj => providerObj.slug === 'spotify'
+	).id
+	const spotifyToken = SYSTEM_DATA.tokens.find(
+		tokenObj => tokenObj.provider === spotifyID
+	)
 	const spotifyApi = !(spotifyToken && spotifyToken.access)
 		? await authorize()
 		: loadBrianfy(spotifyToken.access, spotifyToken.refresh)
@@ -141,4 +204,4 @@ const Brianfy = async SYSTEM_DATA => {
 
 export default Brianfy
 
-export { authorize, findPlaylists, startPlaylist, setVoiceVolume }
+export { authorize, findPlaylists, startPlaylist, smartSearch, setVoiceVolume }

@@ -1,6 +1,6 @@
 // Channels handlers
-import playlistHandler from './playlist'
+import musicHandler from './music'
 import conversationHandler from './conversation'
 import weatherHandler from './weather'
 
-export { playlistHandler, conversationHandler, weatherHandler }
+export { musicHandler, conversationHandler, weatherHandler }

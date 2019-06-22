@@ -1,8 +1,5 @@
 // Reactions to Queue(Stimulus)
-import {
-	playlistHandler,
-	conversationHandler
-} from './reactions/queue-channels'
+import { musicHandler, conversationHandler } from './reactions/queue-channels'
 // Knowledge
 import Memory from './memory'
 // Routines Controller
@@ -14,9 +11,9 @@ import HotwordDetector from './communication/listening'
 const Subscriber = async (SYSTEM_DATA, LanguageProcessor, Brianfy) => {
 	const channels = [
 		{
-			channel: 'playlist_service',
+			channel: 'music_service',
 			callback: msg =>
-				playlistHandler({ player, instance: Brianfy, core: { SYSTEM_DATA } }, msg)
+				musicHandler({ player, instance: Brianfy, core: { SYSTEM_DATA } }, msg)
 		},
 		{
 			channel: 'conversation_service',
@@ -39,7 +36,7 @@ export const init = async () => {
 	Subscriber(SYSTEM_DATA, LanguageProcessor, Brianfy)
 	Routines(player, Brianfy)
 
-	HotwordDetector()
+	// HotwordDetector()
 }
 
 export default init

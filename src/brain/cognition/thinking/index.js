@@ -6,7 +6,7 @@ const processIntentType = ({ label: intentType }, text) => {
 	switch (intentType) {
 		case 'song request': {
 			return RabbitMQ.sendMessage(
-				'playlist_service',
+				'music_service',
 				`{ "data": "${text}", "options": { "play": true } }`
 			)
 		}

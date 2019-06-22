@@ -28,6 +28,7 @@
 		"hoek": "^6.1.2",
 		"hoopa-logger": "^1.1.0",
 		"lame": "^1.2.4",
+		"lodash.maxby": "^4.6.0",
 		"natural": "^0.6.1",
 		"node-nlp": "^3.1.1",
 		"node-record-lpcm16": "^0.3.1",
