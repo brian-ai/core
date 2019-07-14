@@ -46,12 +46,12 @@ $ sudo apt-get install libasound2-dev
 - [x] Accept voice commands and a give a conversational answer
 - [x] Hot keywork (Hey, Brian!)
 - [x] Knowledge growth (Create a internal database to store his knowledge development)
-- [wip] Fluently speak with context
-- Handle ordinary tasks (schedule events, turn on/off electrical devices)
-- Audio Sample Analyzing (Voice recognition)
-- Face Recognition
-- Social network database
-- Smart home control
+- [ ] Fluently speak with context
+- [ ] Handle ordinary tasks (schedule events, turn on/off electrical devices)
+- [ ] Audio Sample Analyzing (Voice recognition)
+- [ ] Face Recognition
+- [ ] Social network database
+- [ ] Smart home control
 
 ## How Brian works?
 
@@ -87,6 +87,7 @@ As mentioned Brian is connected to a few services to charge his powers, they are
    $ cp .sample-env .env
    ```
 3. Add all API keys and secrets to the env file
+
 4. Run the execution command:
    ```sh
    $ yarn call:brian
